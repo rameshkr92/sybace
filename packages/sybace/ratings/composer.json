@@ -1,0 +1,23 @@
+{
+    "name": "sybace/ratings",
+    "description": "Manage Sybace framework ratings",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Ramesh Kumar",
+            "email": "ramesh@panaceatek.com"
+        }
+    ],
+    "repositories": [
+    {
+        "type": "vcs",
+        "url":  "git@bitbucket.org:sybace/ratings.git"
+    }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Sybace\\Ads\\": "src"
+        }
+    },
+    "minimum-stability": "dev"
+}

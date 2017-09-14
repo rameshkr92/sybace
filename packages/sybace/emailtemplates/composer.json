@@ -1,0 +1,23 @@
+{
+    "name": "sybace/emailtemplates",
+    "description": "Manage sybace framework emailtemplates",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Ramesh Kumar",
+            "email": "me@sybace.com"
+        }
+    ],
+    "repositories": [
+    {
+        "type": "vcs",
+        "url":  "git@bitbucket.org:sybace/emailtemplates.git"
+    }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Sybace\\Emailtemplates\\": "src"
+        }
+    },
+    "minimum-stability": "dev"
+}

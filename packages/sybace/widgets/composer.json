@@ -1,0 +1,23 @@
+{
+    "name": "sybace/Widgets",
+    "description": "Manage Sybace framework Widgets",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Ramesh Kumar",
+            "email": "ramesh@panaceatek.com"
+        }
+    ],
+    "repositories": [
+    {
+        "type": "vcs",
+        "url":  "git@bitbucket.org:sybace/widgets.git"
+    }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Sybace\\Widgets\\": "src"
+        }
+    },
+    "minimum-stability": "dev"
+}

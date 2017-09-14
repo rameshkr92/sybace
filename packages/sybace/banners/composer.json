@@ -1,0 +1,23 @@
+{
+    "name": "sybace/pages",
+    "description": "Manage sybace framework pages",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Mahmoud Eid",
+            "email": "me@mahmoudeid.net"
+        }
+    ],
+    "repositories": [
+    {
+        "type": "vcs",
+        "url":  "git@bitbucket.org:sybace/pages.git"
+    }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Sybace\\Pages\\": "src"
+        }
+    },
+    "minimum-stability": "dev"
+}

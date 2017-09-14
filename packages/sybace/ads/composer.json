@@ -1,0 +1,23 @@
+{
+    "name": "sybace/ads",
+    "description": "Manage Sybace framework ads",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Ramesh Kumar",
+            "email": "ramesh@panaceatek.com"
+        }
+    ],
+    "repositories": [
+    {
+        "type": "vcs",
+        "url":  "git@bitbucket.org:sybace/ads.git"
+    }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Sybace\\Ads\\": "src"
+        }
+    },
+    "minimum-stability": "dev"
+}

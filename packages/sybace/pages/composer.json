@@ -1,0 +1,23 @@
+{
+    "name": "sybace/pages",
+    "description": "Manage sybace framework pages",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Ramesh Kumar",
+            "email": "me@sybace.com"
+        }
+    ],
+    "repositories": [
+    {
+        "type": "vcs",
+        "url":  "git@bitbucket.org:sybace/pages.git"
+    }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Sybace\\Pages\\": "src"
+        }
+    },
+    "minimum-stability": "dev"
+}

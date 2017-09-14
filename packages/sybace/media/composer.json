@@ -1,0 +1,23 @@
+{
+    "name": "sybace/media",
+    "description": "Manage Sybace framework media",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Mahmoud Eid",
+            "email": "me@mahmoudeid.net"
+        }
+    ],
+    "repositories": [
+    {
+        "type": "vcs",
+        "url":  "git@bitbucket.org:sybace/media.git"
+    }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Sybace\\Media\\": "src"
+        }
+    },
+    "minimum-stability": "dev"
+}

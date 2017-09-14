@@ -1,0 +1,23 @@
+{
+    "name": "sybace/countries",
+    "description": "Manage Sybace framework ads",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Mahmoud Eid",
+            "email": "me@mahmoudeid.net"
+        }
+    ],
+    "repositories": [
+    {
+        "type": "vcs",
+        "url":  "git@bitbucket.org:sybace/countries.git"
+    }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Sybace\\Countries\\": "src"
+        }
+    },
+    "minimum-stability": "dev"
+}

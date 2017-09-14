@@ -1,0 +1,23 @@
+{
+    "name": "sybace/core",
+    "description": "Manage Sybace framework core",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Mahmoud Eid",
+            "email": "me@mahmoudeid.net"
+        }
+    ],
+    "repositories": [
+    {
+        "type": "vcs",
+        "url":  "git@bitbucket.org:sybace/core.git"
+    }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Sybace\\Core\\": "src"
+        }
+    },
+    "minimum-stability": "dev"
+}

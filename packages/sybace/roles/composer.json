@@ -1,0 +1,17 @@
+{
+    "name": "sybace/roles",
+    "description": "Manage Sybace framework roles",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Ramesh Kumar",
+            "email": "ramesh@panaceatek.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Sybace\\Roles\\": "src"
+        }
+    },
+    "minimum-stability": "dev"
+}

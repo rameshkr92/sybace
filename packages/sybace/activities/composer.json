@@ -1,0 +1,23 @@
+{
+    "name": "sybace/activities",
+    "description": "Manage Sybace framework activities",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Ramesh Kumar",
+            "email": "ramesh@panaceatek.com"
+        }
+    ],
+    "repositories": [
+    {
+        "type": "vcs",
+        "url":  "git@bitbucket.org:sybace/activities.git"
+    }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Sybace\\Activities\\": "src"
+        }
+    },
+    "minimum-stability": "dev"
+}

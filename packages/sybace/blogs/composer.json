@@ -1,0 +1,23 @@
+{
+    "name": "sybace/blogs",
+    "description": "Manage Sybace framework blogs",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Mahmoud Eid",
+            "email": "me@mahmoudeid.net"
+        }
+    ],
+    "repositories": [
+    {
+        "type": "vcs",
+        "url":  "git@bitbucket.org:sybace/blogs.git"
+    }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Sybace\\Contactus\\": "src"
+        }
+    },
+    "minimum-stability": "dev"
+}

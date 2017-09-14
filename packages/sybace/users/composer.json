@@ -1,0 +1,23 @@
+{
+    "name": "sybace/users",
+    "description": "Manage Sybace framework users",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Mahmoud Eid",
+            "email": "me@mahmoudeid.net"
+        }
+    ],
+    "repositories": [
+    {
+        "type": "vcs",
+        "url":  "git@bitbucket.org:sybace/users.git"
+    }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Sybace\\Users\\": "src"
+        }
+    },
+    "minimum-stability": "dev"
+}

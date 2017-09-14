@@ -1,0 +1,23 @@
+{
+    "name": "sybace/settings",
+    "description": "Manage Sybace framework settings",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Mahmoud Eid",
+            "email": "me@mahmoudeid.net"
+        }
+    ],
+    "repositories": [
+    {
+        "type": "vcs",
+        "url":  "git@bitbucket.org:sybace/settings.git"
+    }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Sybace\\Settings\\": "src"
+        }
+    },
+    "minimum-stability": "dev"
+}
