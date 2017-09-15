@@ -69,8 +69,8 @@
                 <li class="@if(\Request::segment(3) == "careers") active @endif">
                     <a href="{{ action('CmsController@showPage','careers') }}" class="dropdown-toggle animated fadeIn animation-delay-6" data-name="component">Careers</a>
                 </li>
-                <li class="@if(\Request::segment(3) == "privacy-policy") active @endif">
-                    <a href="{{ action('CmsController@showPage','privacy-policy') }}" class="dropdown-toggle animated fadeIn animation-delay-7" data-name="blog">Privacy</a>
+                <li class="@if(\Request::segment(3) == "blog") active @endif">
+                    <a href="{{ action('BlogController@index') }}" class="dropdown-toggle animated fadeIn animation-delay-7" data-name="blog">Blog</a>
                 </li>
                 <li class="@if(\Request::segment(3) == "careers") active @endif">
                     <a href="{{ action("WebsiteController@createContact")}}" class="dropdown-toggle animated fadeIn animation-delay-8" data-name="portfolio">Support</a>
