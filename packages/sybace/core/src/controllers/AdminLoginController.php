@@ -111,8 +111,7 @@ class AdminLoginController extends Controller
      */
     public function getFailedLoginMessage()
     {
-        $message = 'البيانات التي أدخلتها غير متطابقة, أو قد تكون غير مفعل.';
- 
-        return $message;
+        $message = 'The data you entered does not match, or may not be enabled.';
+         return $message;
     }
 }
