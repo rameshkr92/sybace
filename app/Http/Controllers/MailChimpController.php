@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: RK
- * Date: 05-09-2017
- * Time: 12:47 AM
- */
 
 namespace App\Http\Controllers;
-
 
 use Illuminate\Http\Request;
 use Auth;

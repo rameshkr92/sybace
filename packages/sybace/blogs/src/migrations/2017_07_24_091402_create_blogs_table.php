@@ -20,6 +20,7 @@ class CreateBlogsTable extends Migration
             $table->integer('updated_by')->unsigned()->index()->nullable();
             $table->foreign('updated_by')->references('id')->on('users')->onDelete('cascade');
             $table->string('slug')->unique();
+            $table->string('options')->nullable();
             $table->boolean('active');
             $table->timestamps();
         });

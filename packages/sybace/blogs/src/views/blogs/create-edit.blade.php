@@ -21,7 +21,12 @@
 @section('page_title')
     {{trans('Blogs::blogs.blogs')}}
 @endsection
+@section('header')
+    <link rel="stylesheet" href="{{ asset('public/media-dev.css')}}" />
+@endsection
 @section('content')
+    <!-- Include Media model -->
+    @include('Media::modals.modal')
     <!-- end include Media model -->
     <div class="row">
         <div class="col-md-12">
@@ -90,6 +95,22 @@
                                         ])
                                     </div>
                                     <div class="col-md-3 sidbare">
+                                        <!-- Media main image -->
+                                        <div class="form-group {{ $errors->has('main_image_id') ? 'has-error': '' }}" style="text-align: center;">
+                                            <label style="display: block;">{{ trans('Users::users.avatar') }}</label>
+
+                                            <a data-toggle="modal" data-target="#inno_media_modal" href="javascript:void(0)" media-data-button-name="{{ trans('Core::operations.select') }}ر{{ trans('Users::users.avatar') }}" media-data-field-name="main_image_id" media-data-required>
+                                                <div class="media-item">
+                                                    @if(isset($item->media) && isset($item->media->main_image) && isset($item->media->main_image->styles['thumbnail']))
+                                                        <img src="{{url('/')}}/{{ $item->media->main_image->styles['thumbnail'] }}" style="max-width: 100%; border: 2px solid rgb(204, 204, 204);">
+                                                        <input type="hidden" name="main_image_id" value="{{$item->media->main_image->id}}">
+                                                    @else
+                                                        <img src="{{ asset('public/images/select_main_img.png') }}" style="max-width: 100%; border: 2px solid rgb(204, 204, 204);">
+                                                    @endif
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <!-- End Media main image -->
                                         <!-- Language field -->
                                     @include('Core::fields.languages')
                                     <!-- End Language field -->
@@ -117,6 +138,12 @@
 @endsection
 
 @section('footer')
+    <!--Language -->
+    @include('Core::language.scripts.scripts')
+    <!--end Language -->
+    <!--Media -->
+    <script src="{{ asset('public/media-dev.js')}}"></script>
+    <!--end media -->
     {{--<script src="https://cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>--}}
     <script src="//cdn.ckeditor.com/4.7.3/full/ckeditor.js"></script>
     <script type="text/javascript">

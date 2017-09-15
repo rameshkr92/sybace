@@ -151,7 +151,7 @@ class MediaApiController extends Controller {
         // create an image manager instance with favored driver
         //$imageManager = new ImageManager(array('driver' => 'GD'));
 
-        $smallPath = 'uploads/small/' . $randomName;
+        $smallPath = 'public/uploads/small/' . $randomName;
         $small = Image::make($movedFile)->fit(150);
 
         File::exists(public_path('uploads/small')) or File::makeDirectory(public_path('uploads/small'));
@@ -198,7 +198,7 @@ class MediaApiController extends Controller {
             // Options
             $options = $media->options;
 
-            // Images only 
+            // Images only
             if (getimagesize($movedFile)) {
                 list($media->width, $media->height) = getimagesize($movedFile);
 
@@ -210,28 +210,28 @@ class MediaApiController extends Controller {
                 }
                 // create an image manager instance with favored driver
                 // Small style
-                $smallPath = 'uploads/small/' . $randomName;
+                $smallPath = 'public/uploads/small/' . $randomName;
                 $small = Image::make($movedFile)->fit(150);
                 File::exists(public_path('uploads/small')) or File::makeDirectory(public_path('uploads/small'));
                 $small->save($smallPath, 100);
                 $options['styles']['small'] = $smallPath;
 
                 // Thumbnail style
-                $thumbnailPath = 'uploads/thumbnail/' . $randomName;
+                $thumbnailPath = 'public/uploads/thumbnail/' . $randomName;
                 $thumbnail = Image::make($movedFile)->fit(300);
                 File::exists(public_path('uploads/thumbnail')) or File::makeDirectory(public_path('uploads/thumbnail'));
                 $thumbnail->save($thumbnailPath, 100);
                 $options['styles']['thumbnail'] = $thumbnailPath;
 
                 // Medium style
-                $mediumPath = 'uploads/medium/' . $randomName;
+                $mediumPath = 'public/uploads/medium/' . $randomName;
                 $medium = Image::make($movedFile)->fit(380, 180);
                 File::exists(public_path('uploads/medium')) or File::makeDirectory(public_path('uploads/medium'));
                 $medium->save($mediumPath, 100);
                 $options['styles']['medium'] = $mediumPath;
 
                 // Large style
-                $largePath = 'uploads/large/' . $randomName;
+                $largePath = 'public/uploads/large/' . $randomName;
                 $large = Image::make($movedFile)->fit(652, 470);
                 File::exists(public_path('uploads/large')) or File::makeDirectory(public_path('uploads/large'));
                 $large->save($largePath, 100);
@@ -244,7 +244,7 @@ class MediaApiController extends Controller {
             if (Auth::user()) {
                 $media->uploaded_by = Auth::user()->id;
             }
-//            
+//
             $media->save();
             $media->url = url($media->file);
 
@@ -264,8 +264,8 @@ class MediaApiController extends Controller {
         foreach ($request->files as $file) {
             if (is_array($file)) {
                 foreach ($file as $f) {
-                   
-                    
+
+
                 $destinationPath = 'uploads';
                 $randomName = date('Y-M-d--h--i--sa') . '-' . str_random(5) . '-' . $f->getClientOriginalName();
 
@@ -284,7 +284,7 @@ class MediaApiController extends Controller {
                     // Options
                     $options = $media->options;
 
-                    // Images only 
+                    // Images only
                     if (getimagesize($movedFile)) {
                         list($media->width, $media->height) = getimagesize($movedFile);
 
@@ -296,28 +296,28 @@ class MediaApiController extends Controller {
                         }
                         // create an image manager instance with favored driver
                         // Small style
-                        $smallPath = 'uploads/small/' . $randomName;
+                        $smallPath = 'public/uploads/small/' . $randomName;
                         $small = Image::make($movedFile)->fit(150);
                         File::exists(public_path('uploads/small')) or File::makeDirectory(public_path('uploads/small'));
                         $small->save($smallPath, 100);
                         $options['styles']['small'] = $smallPath;
 
                         // Thumbnail style
-                        $thumbnailPath = 'uploads/thumbnail/' . $randomName;
+                        $thumbnailPath = 'public/uploads/thumbnail/' . $randomName;
                         $thumbnail = Image::make($movedFile)->fit(300);
                         File::exists(public_path('uploads/thumbnail')) or File::makeDirectory(public_path('uploads/thumbnail'));
                         $thumbnail->save($thumbnailPath, 100);
                         $options['styles']['thumbnail'] = $thumbnailPath;
 
                         // Medium style
-                        $mediumPath = 'uploads/medium/' . $randomName;
+                        $mediumPath = 'public/uploads/medium/' . $randomName;
                         $medium = Image::make($movedFile)->fit(380, 180);
                         File::exists(public_path('uploads/medium')) or File::makeDirectory(public_path('uploads/medium'));
                         $medium->save($mediumPath, 100);
                         $options['styles']['medium'] = $mediumPath;
 
                         // Large style
-                        $largePath = 'uploads/large/' . $randomName;
+                        $largePath = 'public/uploads/large/' . $randomName;
                         $large = Image::make($movedFile)->fit(652, 470);
                         File::exists(public_path('uploads/large')) or File::makeDirectory(public_path('uploads/large'));
                         $large->save($largePath, 100);
@@ -330,7 +330,7 @@ class MediaApiController extends Controller {
                     if (Auth::user()) {
                         $media->uploaded_by = Auth::user()->id;
                     }
-//            
+//
                     $media->save();
                     $media->url = url($media->file);
                     $media->multiple_images_present = true;
@@ -341,7 +341,7 @@ class MediaApiController extends Controller {
                 $response = [
                     'status' => 1,
                     'message' => 'Uploaded successfully'
-                ];                
+                ];
 //                }
             } else {
 
@@ -360,13 +360,13 @@ class MediaApiController extends Controller {
 
 
 //                foreach ($request->files as $file) {
-               
+
 
 
                     // Options
                     $options = $media->options;
 
-                    // Images only 
+                    // Images only
                     if (getimagesize($movedFile)) {
                         list($media->width, $media->height) = getimagesize($movedFile);
 
@@ -378,28 +378,28 @@ class MediaApiController extends Controller {
                         }
                         // create an image manager instance with favored driver
                         // Small style
-                        $smallPath = 'uploads/small/' . $randomName;
+                        $smallPath = 'public/uploads/small/' . $randomName;
                         $small = Image::make($movedFile)->fit(150);
                         File::exists(public_path('uploads/small')) or File::makeDirectory(public_path('uploads/small'));
                         $small->save($smallPath, 100);
                         $options['styles']['small'] = $smallPath;
 
                         // Thumbnail style
-                        $thumbnailPath = 'uploads/thumbnail/' . $randomName;
+                        $thumbnailPath = 'public/uploads/thumbnail/' . $randomName;
                         $thumbnail = Image::make($movedFile)->fit(300);
                         File::exists(public_path('uploads/thumbnail')) or File::makeDirectory(public_path('uploads/thumbnail'));
                         $thumbnail->save($thumbnailPath, 100);
                         $options['styles']['thumbnail'] = $thumbnailPath;
 
                         // Medium style
-                        $mediumPath = 'uploads/medium/' . $randomName;
+                        $mediumPath = 'public/uploads/medium/' . $randomName;
                         $medium = Image::make($movedFile)->fit(380, 180);
                         File::exists(public_path('uploads/medium')) or File::makeDirectory(public_path('uploads/medium'));
                         $medium->save($mediumPath, 100);
                         $options['styles']['medium'] = $mediumPath;
 
                         // Large style
-                        $largePath = 'uploads/large/' . $randomName;
+                        $largePath = 'public/uploads/large/' . $randomName;
                         $large = Image::make($movedFile)->fit(652, 470);
                         File::exists(public_path('uploads/large')) or File::makeDirectory(public_path('uploads/large'));
                         $large->save($largePath, 100);

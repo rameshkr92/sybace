@@ -117,4 +117,4 @@ Route::group(['prefix' => $locale], function() {
 });
 // Market Place routes end here
 
-Route::get('/blog', 'WebsiteController@blog');
+Route::get('blog', 'BlogController@index');

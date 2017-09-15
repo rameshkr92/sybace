@@ -98,7 +98,7 @@ if($url){
 
         $webmeta['title'] = "Your Online Shopping Store";
         $webmeta['keywords'] = "Online Shopping in India,online Shopping store,Online Shopping Site,Buy Online,Shop Online,Online Shopping,Flipkart";
-        $webmeta['description'] = "India&#x27;s biggest online store for Mobiles,Fashion(Cloths/Shoes),Electronics,Home Appliances,Books,Jewelry,Home,Furniture,Sporting goods,Beauty &amp; personal care and more! Largest selection from all brands at lowest price.Payment options - COD,EMI,Credit card,Debit card &amp; more. Buy Now!";
+        $webmeta['description'] = "India's biggest online store for Mobiles,Fashion(Cloths/Shoes),Electronics,Home Appliances,Books,Jewelry,Home,Furniture,Sporting goods,Beauty &amp; personal care and more! Largest selection from all brands at lowest price.Payment options - COD,EMI,Credit card,Debit card &amp; more. Buy Now!";
 
         return view('website.marketplace.index', compact('webmeta','items','categories','list','products','hidden'));
     }

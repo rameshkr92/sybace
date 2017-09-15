@@ -90,6 +90,9 @@ class BlogsApiController extends Controller
             $blogs->active = true;
         }
         $blogs->slug = $this->seoUrl($request->name_en);
+        // Media
+        $options['media']['main_image_id'] = $request->main_image_id;
+        $blogs->options = $options;
         $blogs->save();
 
         // Translation
@@ -143,6 +146,9 @@ class BlogsApiController extends Controller
             $blog->active = true;
         }
         $blog->slug = $this->seoUrl($request->name_en);
+        // Media
+        $options['media']['main_image_id'] = $request->main_image_id;
+        $blog->options = $options;
         $blog->save();
         // Translation
         foreach ($request->language as $langCode) {

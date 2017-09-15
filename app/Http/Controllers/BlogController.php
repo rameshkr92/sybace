@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Sybace\Faqs\Models\Faq;
-use Sybace\Faqs\Models\FaqTrans;
-use Sybace\Pages\Models\Page;
-use Sybace\Pages\Models\PageTrans;
+use Sybace\Blogs\Models\Blog;
+use Sybace\Blogs\Models\BlogTrans;
 use Auth;
 use Lang;
 use Sybace\Users\Controllers\UsersApiController as API;
@@ -16,7 +14,7 @@ use Mail;
 use Sybace\Ads\Models\Section;
 use Validator;
 
-class FaqController extends Controller {
+class BlogController extends Controller {
 
     public function __construct() {
         $this->api = new API;
@@ -43,12 +41,17 @@ class FaqController extends Controller {
      *
      * @var view
      */
-    public function faqs(Request $request) {
-        $item = Faq::where(array('active'=>'1'))->get();
-        if(count($item) == null){
-            return redirect('/');
-        }
-        return view('website.faqs.index', compact('item', 'trans'));
+    public function index(Request $request) {
+        $item = Blog::where(array('active'=>'1'))->get();
+//        if(count($item) == null){
+//            return redirect('/');
+//        }
+//        dd($item);
+//        $webmeta['title'] = "Your Online Shopping Store";
+//        $webmeta['keywords'] = "Online Shopping in India,online Shopping store,Online Shopping Site,Buy Online,Shop Online,Online Shopping,Flipkart";
+//        $webmeta['description'] = "India&#x27;s biggest online store for Mobiles,Fashion(Cloths/Shoes),Electronics,Home Appliances,Books,Jewelry,Home,Furniture,Sporting goods,Beauty &amp; personal care and more! Largest selection from all brands at lowest price.Payment options - COD,EMI,Credit card,Debit card &amp; more. Buy Now!";
+
+        return view('website.blogs.index', compact('item', 'trans'));
     }
     /**
      * faq Contact
