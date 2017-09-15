@@ -22,10 +22,10 @@ Route::group(['middleware' => ['web', 'admin'], 'prefix' => $locale . '/admin'],
     Route::POST('blogs/bulk-operations', 'Sybace\Blogs\Controllers\BlogsController@bulkOperations');
 
     # ِComments
-    Route::GET('blogs/comments', 'Sybace\Blogs\Controllers\CommentsController@index');
-    Route::GET('blogs/comments/create', 'Sybace\Blogs\Controllers\CommentsController@create');
-    Route::POST('blogs/comments', 'Sybace\Blogs\Controllers\CommentsController@store');
-    Route::GET('blogs/comments/{id}/edit', 'Sybace\Blogs\Controllers\CommentsController@edit');
-    Route::PATCH('blogs/comments/{id}', 'Sybace\Blogs\Controllers\CommentsController@update');
+    Route::GET('blogs/comments/{id}', 'Sybace\Blogs\Controllers\CommentsController@index');
+    Route::GET('blogs/comments/{id}/create', 'Sybace\Blogs\Controllers\CommentsController@create');
+    Route::POST('blogs/comments/{id}', 'Sybace\Blogs\Controllers\CommentsController@store');
+    Route::GET('blogs/comments/{post_id}/{id}/edit', 'Sybace\Blogs\Controllers\CommentsController@edit');
+    Route::PATCH('blogs/comments/{post_id}/{id}', 'Sybace\Blogs\Controllers\CommentsController@update');
     Route::POST('blogs/comments/bulk-operations', 'Sybace\Blogs\Controllers\CommentsController@bulkOperations');
 });

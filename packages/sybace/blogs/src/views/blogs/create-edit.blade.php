@@ -55,8 +55,34 @@
                                                 1 => [
                                                     'type' => 'textarea',
                                                     'properties' => [
-                                                        'field_name' => 'description',
+                                                        'field_name' => 'body',
                                                         'name' => trans('Pages::pages.description'),
+                                                        'placeholder' => ''
+                                                    ]
+                                                ],
+                                                2 =>[
+                                                    'type' => 'input_text',
+                                                    'properties' => [
+                                                        'field_name' => 'seo_title',
+                                                        'name' => trans('Pages::pages.page_seo_title'),
+                                                        'placeholder' => ''
+                                                    ]
+
+                                                ],
+                                                3 =>[
+                                                    'type' => 'input_text',
+                                                    'properties' => [
+                                                        'field_name' => 'meta_keywords',
+                                                        'name' => trans('Pages::pages.page_meta_keywords'),
+                                                        'placeholder' => ''
+                                                    ]
+
+                                                ],
+                                                4 => [
+                                                    'type' => 'textarea',
+                                                    'properties' => [
+                                                        'field_name' => 'meta_description',
+                                                        'name' => trans('Pages::pages.page_meta_description'),
                                                         'placeholder' => ''
                                                     ]
                                                 ]
@@ -91,10 +117,11 @@
 @endsection
 
 @section('footer')
-    <script src="https://cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>
+    {{--<script src="https://cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>--}}
+    <script src="//cdn.ckeditor.com/4.7.3/full/ckeditor.js"></script>
     <script type="text/javascript">
-        CKEDITOR.replace('description_en');
-        CKEDITOR.replace('description_ar');
+        CKEDITOR.replace('body_en');
+        CKEDITOR.replace('body_ar');
 
         $(document).ready(function () {
             $('#lang-en').attr('onClick','return false');

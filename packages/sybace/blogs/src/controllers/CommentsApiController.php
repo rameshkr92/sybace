@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\URL;
 use Config;
 use Illuminate\Support\Facades\Mail;
 
-class BlogsApiController extends Controller
+class CommentsApiController extends Controller
 {
     /*
    |--------------------------------------------------------------------------

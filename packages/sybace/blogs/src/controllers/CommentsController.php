@@ -1,6 +1,7 @@
 <?php
 
 namespace Sybace\Blogs\Controllers;
+
 use Illuminate\Http\Request;
 use Sybace\Blogs\Controllers\BlogsApiController as API;
 use Sybace\Blogs\Models\Blog;
@@ -12,13 +13,13 @@ use Lang;
 
 //use Sybace\Blogs\Models\Section;
 
-class BlogsController extends BlogsApiController {
+class CommentsController extends CommentsApiController {
     /*
       |--------------------------------------------------------------------------
-      | Sybace Blogs Controller
+      | Sybace Comments Controller
       |--------------------------------------------------------------------------
       |
-      | This controller handles Blogs for the application.
+      | This controller handles Comments for the application.
       |
      */
 
@@ -37,18 +38,10 @@ class BlogsController extends BlogsApiController {
         $items = $this->api->listItems($request);
 //        dd($items);
 //        $sections = Section::get();
-        return view('Blogs::blogs.index', compact('items', 'sections'));
-    }
-
-    public function sectionIndex(Request $request) {
-        $request->request->add(['paginate' => 20]);
-        $items = $this->api->listSectionItems($request);
-        return view('Blogs::blogs.section-index', compact('items', 'sections'));
+        return view('Blogs::blogs.comments', compact('items', 'sections'));
     }
 
     /**
-     *
-     *
      * @param
      * @return
      */
@@ -87,7 +80,7 @@ class BlogsController extends BlogsApiController {
         if ($request->back) {
             return back();
         }
-        return redirect(action('\Sybace\Blogs\Controllers\BlogsController@index'));
+        return redirect(action('\Sybace\Blogs\Controllers\CommentsController@index'));
     }
     /**
      * @param
@@ -120,7 +113,7 @@ class BlogsController extends BlogsApiController {
         if ($request->back) {
             return back();
         }
-        return redirect(action('\Sybace\Blogs\Controllers\BlogsController@index'));
+        return redirect(action('\Sybace\Blogs\Controllers\CommentsController@index'));
     }
 
     /**

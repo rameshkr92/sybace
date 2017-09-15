@@ -31,15 +31,19 @@ class CreateBlogsTable extends Migration
             $table->foreign('post_id')->references('id')->on('blogs')->onDelete('cascade');
             $table->string('name')->unique();
             $table->longText('body')->nullable();
+            $table->text('seo_title')->nullable();
+            $table->text('meta_keywords')->nullable();
+            $table->text('meta_description')->nullable();
             $table->string('lang');
             $table->timestamps();
         });
 
         Schema::create('comments', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('parent_id')->unsigned()->default(0);
             $table->integer('post_id')->unsigned()->index()->unsigned()->default(0);
             $table->foreign('post_id')->references('id')->on('blogs')->onDelete('cascade');
-            $table -> integer('from_user')->unsigned()->default(0);
+            $table->integer('from_user')->unsigned()->default(0);
 			$table->foreign('from_user')->references('id')->on('users')->onDelete('cascade');
             $table->boolean('active')->default(0);
             $table->timestamps();
@@ -51,6 +55,8 @@ class CreateBlogsTable extends Migration
             $table->integer('comment_id')->unsigned()->index()->nullable();
             $table->foreign('comment_id')->references('id')->on('comments')->onDelete('cascade');
             $table->longText('body')->nullable();
+            $table->bigInteger('liked')->nullable();
+            $table->bigInteger('disliked')->nullable();
             $table->string('lang');
             $table->timestamps();
         });

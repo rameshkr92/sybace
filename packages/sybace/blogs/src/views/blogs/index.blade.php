@@ -40,11 +40,9 @@
                                 </th>
                                 <th>{{ trans('Core::operations.id') }}</th>
                                 <th>{{ trans('Blogs::blogs.name') }}</th>
-                                <th>{{ trans('Blogs::blogs.description') }}</th>
                                 <th>{{ trans('Blogs::blogs.date') }}</th>
-                                <th>{{ trans('Blogs::blogs.view') }}</th>
-                                <th> {{ trans('Blogs::blogs.status') }} </th>
-                                <th>{{ trans('Blogs::blogs.delete') }}</th>
+                                <th>{{ trans('Core::operations.status') }}</th>
+                                <th>{{ trans('Core::operations.operations') }}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -64,40 +62,20 @@
                                             </td>
                                             <td>
                                                 @if($item->trans)
-                                                    {!! $item->trans->body !!}
-                                                @endif
-                                            </td>
-                                            <td>
-                                                @if($item->trans)
                                                     {{ $item->trans->created_at }}
                                                 @endif
                                             </td>
                                             <td>
-                                                @if($item->trans)
-                                                    @if($item->trans->is_reply==1)
-                                                        {{ trans('Blogs::blogs.replied_status') }}
-                                                    @else
-                                                        {{ trans('Blogs::blogs.not_replied_status') }}
-                                                    @endif
-                                                @endif
-                                            </td>
-                                            <td>
-                                                <a href="{{url('/')}}/{{Lang::getLocale() }}/admin/blogs/{{$item->id}}"><i class="fa fa-eye"></i> {{ trans('Blogs::blogs.viewReply') }}</a>
-                                            </td>
-                                            <td>
-                                                @if($item->trans->is_read == true)
-                                                    <a href='{{ url('/')."/".Lang::getLocale()."/"."admin/blogs/change-status/".$item->id }}' class='label label-success'>{{ trans('Blogs::blogs.read') }} </a>
+                                                @if($item->active == true)
+                                                    {{ trans('Core::operations.active') }}
                                                 @else
-                                                    <a href='{{ url('/')."/".Lang::getLocale()."/"."admin/blogs/change-status/".$item->id }}' class='label label-danger'> {{ trans('Blogs::blogs.unread') }}</a>
+                                                    {{ trans('Core::operations.inactive') }}
                                                 @endif
-                                                {{--@if($item->active == true)--}}
-                                                    {{--{{ trans('Core::operations.active') }}--}}
-                                                {{--@else--}}
-                                                    {{--{{ trans('Core::operations.inactive') }}--}}
-                                                {{--@endif--}}
                                             </td>
                                             <td>
-                                                <a onclick="confirmDelete(this)" data-toggle="modal" data-href="#full-width" data-id="{{ $item->id }}" @if($item->trans) data-title="{{ $item->trans->contact_name }}/{{ $item->trans->contact_email}}" @endif href="#full-width"><i class="fa fa-trash"></i> {{ trans('Core::operations.delete') }}</a>
+                                                <a href="{{ action('\Sybace\Blogs\Controllers\BlogsController@edit', $item->id) }}"><i class="fa fa-edit"></i> {{ trans('Core::operations.edit') }}</a>
+                                                &nbsp;<a href="{{ action('\Sybace\Blogs\Controllers\CommentsController@index', $item->id) }}"><i class="fa fa-comment"></i> Comments</a>&nbsp;
+                                                <a onclick="confirmDelete(this)" data-toggle="modal" data-href="#full-width" data-id="{{ $item->id }}" @if($item->trans) data-title="{{ $item->trans->name }}" @endif href="#full-width"><i class="fa fa-trash"></i> {{ trans('Core::operations.delete') }}</a>
                                             </td>
                                         </tr>
                                     @endif
