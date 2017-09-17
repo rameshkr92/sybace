@@ -118,3 +118,5 @@ Route::group(['prefix' => $locale], function() {
 // Market Place routes end here
 
 Route::get('blog', 'BlogController@index');
+Route::get('blog/{slug}', 'BlogController@detail');
+Route::post('post-comment/{slug}', 'BlogController@comment');

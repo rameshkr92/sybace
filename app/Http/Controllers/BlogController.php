@@ -7,6 +7,8 @@ use Sybace\Blogs\Models\Blog;
 use Sybace\Blogs\Models\BlogTrans;
 use Auth;
 use Lang;
+use Sybace\Blogs\Models\Comment;
+use Sybace\Blogs\Models\CommentTrans;
 use Sybace\Users\Controllers\UsersApiController as API;
 use Sybace\Settings\Models\Setting;
 use Config;
@@ -42,109 +44,61 @@ class BlogController extends Controller {
      * @var view
      */
     public function index(Request $request) {
-        $item = Blog::where(array('active'=>'1'))->get();
-//        if(count($item) == null){
-//            return redirect('/');
-//        }
-//        dd($item);
-//        $webmeta['title'] = "Your Online Shopping Store";
-//        $webmeta['keywords'] = "Online Shopping in India,online Shopping store,Online Shopping Site,Buy Online,Shop Online,Online Shopping,Flipkart";
-//        $webmeta['description'] = "India&#x27;s biggest online store for Mobiles,Fashion(Cloths/Shoes),Electronics,Home Appliances,Books,Jewelry,Home,Furniture,Sporting goods,Beauty &amp; personal care and more! Largest selection from all brands at lowest price.Payment options - COD,EMI,Credit card,Debit card &amp; more. Buy Now!";
-
-        return view('website.blogs.index', compact('item', 'trans'));
+        $items = Blog::where(array('active'=>'1'))->get();
+        return view('website.blogs.index', compact('items', 'trans'));
     }
-    /**
-     * faq Contact
-     *
-     * @var
+    /*
+     * Function to show blog detail
      */
-    public function faqContact(Request $request) {
-        if ($request->method() == 'GET') {
-//            ContactusSection
-            $sections = \Sybace\Contactus\Models\ContactusSection::where(array('active'=> "1"))->get();
-            return view('website.contact-us.index', compact('sections'));
-        } elseif ($request->method() == 'POST') {
-            Validator::extend('phone_number_must_between', function($attribute, $value, $parameters, $validator) {
-                if (!((strlen($value) == 12 && substr($value, 0, 4) == "9665" ) || (strlen($value) == 10 && substr($value, 0, 2) == "05") || (strlen($value) == 9 && substr($value, 0, 1) == "5"))) {
-                    return false;
-                } else {
-                    return true;
-                }
-            });
-            $messages = array(
-                'phone_number_must_between' => 'Please enter a valid number.'
-            );
-
-            $rules = $request->all();
-            $this->validate($request, [
-                'name' => 'required',
-                'contact_email' => 'required|email',
-                'contact_phone' => 'required|numeric',
-                'contact_subject' => 'required',
-                'contact_message' => 'required',
-            ], $messages);
-
-            // Send email
-
-            //Assign values to all macros
-            $arr_keyword_values['userName'] = $request->store_name;
-            $arr_keyword_values['message'] = $request->contact_message;
-            $arr_keyword_values['contactDate'] = date("jS F Y h:i:s A");
-
-            $name = Setting::find(1)->value;
-            $email = Setting::find(3)->value;
-            $this->setMailSettings();
-//                    dd($message);
-            //user mail setting
-            $emailtemplateUser = EmailTemplateTrans::where(array('template_key'=> 'user-contacted', 'lang'=>Lang::getlocale()))->first();
-            $emailtemplateAdmin = EmailTemplateTrans::where(array('template_key'=> 'admin-contacted', 'lang'=>Lang::getlocale()))->first();
-            $admin_user = User::where('id',1)->first();
-            try {
-                Mail::send('emails.user-contacted'.'-'.Lang::getlocale(), $arr_keyword_values, function ($message) use ($request, $admin_user, $emailtemplateUser) {
-//                    $message->from($email, $name);
-                    $message->from($request->contact_email, $request->store_name);
-                    $message->to($admin_user->email);
-                    $message->subject($emailtemplateUser->subject);
-                });
-            } catch (\Exception $e) {
-                dd($e->getMessage());
+    function detail(Request $request,$slug=''){
+        $item = Blog::where(array('slug'=>$slug))->first();
+        if(count($item) == null){
+            \Session::flash('alert-class', 'alert-danger');
+            \Session::flash('message', "Record not found!");
+            return back()->withInput();
+        }
+        $comments = Comment::where(array('post_id'=>$item->id))->get();
+        $webmeta['title'] = $item->trans->seo_title;
+        $webmeta['keywords'] = $item->trans->meta_keywords;
+        $webmeta['description'] = $item->trans->meta_description;
+//        dd($comments);
+        return view('website.blogs.detail', compact('webmeta','item','comments'));
+    }
+    /*
+    *post comment
+    */
+    function comment(Request $request, $slug){
+        $item = Blog::where(array('slug'=>$slug))->first();
+        if(count($item) == null){
+            \Session::flash('alert-class', 'alert-danger');
+            \Session::flash('message', "Record not found!");
+            return back()->withInput();
+        }
+        $this->validate($request, [
+            'comment' => 'required'
+        ]);
+        if(isset($slug)) {
+            $cur_lang = Lang::getlocale();
+            $comment = new Comment;
+            $author = Auth::user()->id;
+            $comment->parent_id = 0;
+            if ($request->comment_id) {
+                $comment->parent_id = $request->comment_id;
             }
-            /*$admin_user = User::where('id',1)->first();
-            try {
-                Mail::send('emails.user-contacted'.'-'.Lang::getlocale(), $arr_keyword_values, function ($message) use ($admin_user,$request, $name,$email, $emailtemplateAdmin) {
-                    $message->from($email, $name);
-                    $message->to($admin_user->email);
-                    $message->subject($emailtemplateAdmin->subject);
-                });
-            } catch (\Exception $e) {
-                dd($e->getMessage());
-            }*/
-            $contact_data = new \Sybace\Contactus\Models\Contactus();
-            $contact_data->section_id = "";
-            if ($request->section) {
-                $contact_data->section_id = $request->section;
-                $contact_data->active = "1";
-            }
-            $contact_data->save();
+            $comment->post_id = $request->post_id;
+            $comment->from_user = $author;
+            $comment->active = 1;
+            $comment->save();
+            $commentTrans = new CommentTrans;
+            $commentTrans->comment_id = $comment->id;
+            $commentTrans->body = $request->comment;
+            $commentTrans->lang = isset($cur_lang) ? $cur_lang : "en";
+            $commentTrans->save();
+//            return redirect()->back()->with('success','send campaign successfully');
+            return redirect(action('BlogController@detail',$slug));
 
-//            $contact_data = \Sybace\Contactus\Models\Contactus::create();
-            $obj = new \Sybace\Contactus\Models\ContactusTrans();
-            $obj->lang = Lang::getlocale();
-            $obj->contact_id = $contact_data->id;
-            $obj->section_id = 1;
-            $obj->contact_email = $request->contact_email;
-            $obj->store_name = $request->store_name;
-            $obj->is_read = "0";
-            $obj->is_reply = "0";
-            $obj->contact_subject = $request->contact_subject;
-            $obj->contact_message = $request->contact_message;
-            $obj->contact_phone = $request->contact_phone;
-            $obj->reference_no = time();
-            $obj->save();
-
-            \Session::flash('alert-class', 'alert-success');
-            \Session::flash('message', trans('project.contactus_success'));
-            return back();
+        } else {
+            return redirect()->back()->with('error','Something went wrong, please try again!');
         }
     }
 }

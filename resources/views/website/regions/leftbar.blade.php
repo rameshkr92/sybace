@@ -30,7 +30,7 @@
             @if(\Request::segment(2) == "marketplace")
                 <li class="panel" role="tab" id="sch2">
                     <a class="collapsed" role="button" data-toggle="collapse" data-parent="#slidebar-menu" href="#sc2" aria-expanded="false" aria-controls="sc2">
-                        <i class="zmdi zmdi-desktop-mac"></i> Marketplace </a>
+                        <i class="zmdi zmdi-desktop-mac"></i> Deals </a>
                     <ul id="sc2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="sch2">
                         <?php
                         if(isset($categories)){
@@ -52,10 +52,13 @@
             @else
                 <li class="@if(\Request::segment(3) == "marketplace") active @endif">
                     <a class="link" href="{{ url('/').'/'.Lang::getlocale().'/marketplace' }}">
-                        <i class="zmdi zmdi-view-compact"></i> Marketplace</a>
+                        <i class="zmdi zmdi-view-compact"></i> Deals</a>
                 </li>
             @endif
-
+            <li class="@if(\Request::segment(2) == "blog") active @endif">
+                <a class="link" href="{{ action('BlogController@index') }}">
+                    <i class="zmdi zmdi-view-compact"></i> Blog</a>
+            </li>
             <li class="panel" role="tab" id="sch2">
                 <a class="collapsed" role="button" data-toggle="collapse" data-parent="#slidebar-menu" href="#sc2" aria-expanded="false" aria-controls="sc2">
                     <i class="zmdi zmdi-desktop-mac"></i> Pages </a>

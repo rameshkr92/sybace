@@ -78,12 +78,9 @@ class MailChimpController extends Controller
                 'html' => $request->input('message'),
                 'text' => strip_tags($request->input('message'))
             ];
-
             $campaign = $this->mailchimp->campaigns->create('regular', $options, $content);
             $this->mailchimp->campaigns->send($campaign['id']);
-
             return redirect()->back()->with('success','send campaign successfully');
-
 
         } catch (Exception $e) {
             return redirect()->back()->with('error','Error from MailChimp');

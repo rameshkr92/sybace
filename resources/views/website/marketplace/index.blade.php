@@ -3,8 +3,8 @@
     <div class="sb-site-container">
     @include('website.home.blocks.top-head')
     @include('website.regions.header')
-    @include('website.marketplace.blocks.banner')
-    <div class="ms-bg-fixed mb-6 mt-4">
+    {{--@include('website.marketplace.blocks.banner')--}}
+ <div class="ms-bg-fixed mb-6 mt-4">
             <div class="container text-center">
                 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <!-- Deals Page -->
@@ -19,12 +19,11 @@
             </div>
         </div>
     <!-- ms-hero ms-hero-black -->
-        <div class="wrap bg-warning">
             <div class="container">
                 {{--<div class="text-center">--}}
                     {{--<div data-WRID="WRID-150503406347763440" data-widgetType="Push Content"  data-class="affiliateAdsByFlipkart" height="90" width="728"></div><script async src="//affiliate.flipkart.com/affiliate/widgets/FKAffiliateWidgets.js"></script>--}}
                 {{--</div>--}}
-                <h1 class="color-white text-center mb-4">Latest Offers</h1>
+                <h1 class="right-line mb-4">Latest Offers</h1>
                 <div class="row masonry-container">
                     <?php
                     $count = 0;
@@ -60,9 +59,8 @@
                 </div>
             </div>
             <!-- container -->
-        </div>
-        <div class="container mt-6">
-            <h1 class="text-center mb-4">Products</h1>
+        <div class="container">
+            <h1 class="right-line mb-4">Products</h1>
             <div class="row">
                 <div class="col-md-12">
                     <div class="card card-primary">
@@ -74,48 +72,65 @@
                                 <div class="col-md-8">
                                     <form class="form-horizontal" id="Filters">
                                         <div class="row">
-                                            <div class="col-md-6">
-                                                <fieldset>
-                                                    <h4 class="mb-1 no-mt">Devices</h4>
-                                                    <div class="form-group no-mt">
-                                                        <div class="checkbox ml-2">
-                                                            <label>
-                                                                <input type="checkbox" value=".smartphone"> Smartphones </label>
-                                                        </div>
-                                                        <div class="checkbox  ml-2">
-                                                            <label>
-                                                                <input type="checkbox" value=".tablet"> Tablets </label>
-                                                        </div>
-                                                        <div class="checkbox  ml-2">
-                                                            <label>
-                                                                <input type="checkbox" value=".laptop"> Laptops </label>
-                                                        </div>
-                                                        <div class="checkbox  ml-2">
-                                                            <label>
-                                                                <input type="checkbox" value=".accessory"> Accesories </label>
-                                                        </div>
-                                                    </div>
-                                                </fieldset>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <fieldset>
-                                                    <h4 class="mb-1">Brand</h4>
-                                                    <div class="form-group no-mt">
-                                                        <div class="checkbox  ml-2">
-                                                            <label>
-                                                                <input type="checkbox" value=".apple"> Apple </label>
-                                                        </div>
-                                                        <div class="checkbox  ml-2">
-                                                            <label>
-                                                                <input type="checkbox" value=".microsoft"> Microsoft </label>
-                                                        </div>
-                                                        <div class="checkbox  ml-2">
-                                                            <label>
-                                                                <input type="checkbox" value=".samsung"> Samsung </label>
-                                                        </div>
-                                                    </div>
-                                                </fieldset>
-                                            </div>
+                                            <ul>
+                                                <?php
+                                                if(isset($categories)){
+                                                $count = 0;
+                                                $end = 1;
+                                                foreach ($categories as $key => $data) {
+                                                $count++;
+                                                $end = 0;
+                                                ?>
+                                                <li>
+                                                    <a class="withripple" href="{{ '?url='.base64_encode($data['availableVariants']['v0.1.0']['get']) }} "><i class="fa fa-arrow-circle-right"></i> {{ ucwords(str_replace("_"," ",$key)) }}</a>
+                                                </li>
+                                                <?php
+                                                }
+                                                }
+                                                ?>
+                                            </ul>
+                                            {{--<div class="col-md-6">--}}
+                                                {{--<fieldset>--}}
+                                                    {{--<h4 class="mb-1 no-mt">Devices</h4>--}}
+                                                    {{--<div class="form-group no-mt">--}}
+                                                        {{--<div class="checkbox ml-2">--}}
+                                                            {{--<label>--}}
+                                                                {{--<input type="checkbox" value=".smartphone"> Smartphones </label>--}}
+                                                        {{--</div>--}}
+                                                        {{--<div class="checkbox  ml-2">--}}
+                                                            {{--<label>--}}
+                                                                {{--<input type="checkbox" value=".tablet"> Tablets </label>--}}
+                                                        {{--</div>--}}
+                                                        {{--<div class="checkbox  ml-2">--}}
+                                                            {{--<label>--}}
+                                                                {{--<input type="checkbox" value=".laptop"> Laptops </label>--}}
+                                                        {{--</div>--}}
+                                                        {{--<div class="checkbox  ml-2">--}}
+                                                            {{--<label>--}}
+                                                                {{--<input type="checkbox" value=".accessory"> Accesories </label>--}}
+                                                        {{--</div>--}}
+                                                    {{--</div>--}}
+                                                {{--</fieldset>--}}
+                                            {{--</div>--}}
+                                            {{--<div class="col-md-6">--}}
+                                                {{--<fieldset>--}}
+                                                    {{--<h4 class="mb-1">Brand</h4>--}}
+                                                    {{--<div class="form-group no-mt">--}}
+                                                        {{--<div class="checkbox  ml-2">--}}
+                                                            {{--<label>--}}
+                                                                {{--<input type="checkbox" value=".apple"> Apple </label>--}}
+                                                        {{--</div>--}}
+                                                        {{--<div class="checkbox  ml-2">--}}
+                                                            {{--<label>--}}
+                                                                {{--<input type="checkbox" value=".microsoft"> Microsoft </label>--}}
+                                                        {{--</div>--}}
+                                                        {{--<div class="checkbox  ml-2">--}}
+                                                            {{--<label>--}}
+                                                                {{--<input type="checkbox" value=".samsung"> Samsung </label>--}}
+                                                        {{--</div>--}}
+                                                    {{--</div>--}}
+                                                {{--</fieldset>--}}
+                                            {{--</div>--}}
                                         </div>
                                     </form>
                                 </div>

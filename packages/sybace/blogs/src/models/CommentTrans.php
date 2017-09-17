@@ -7,7 +7,7 @@ use Lang;
 
 class CommentTrans extends Model
 {
-    protected $table = 'contactus_sections_trans';
+    protected $table = 'comments_trans';
     /**
      * The attributes excluded from the model's JSON form.
      *

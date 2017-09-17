@@ -78,7 +78,7 @@
                 @if(\Request::segment(2) == "marketplace")
                     <li class="dropdown yamm-fw">
                         <a href="#" class="dropdown-toggle animated fadeIn animation-delay-6" data-toggle="dropdown" data-hover="dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-name="component">
-                            Marketplace <i class="zmdi zmdi-chevron-down"></i><div class="ripple-container"></div>
+                            Deals <i class="zmdi zmdi-chevron-down"></i><div class="ripple-container"></div>
                         </a>
                         <ul class="dropdown-menu dropdown-megamenu animated fadeIn animated-2x" style="">
                             <li>
@@ -112,7 +112,7 @@
                     </li>
                 @else
                     <li class="@if(\Request::segment(3) == "marketplace") active @endif">
-                        <a href="{{ url('/').'/'.Lang::getlocale().'/marketplace' }}" class="dropdown-toggle animated fadeIn animation-delay-9" data-name="ecommerce">Marketplace</a>
+                        <a href="{{ url('/').'/'.Lang::getlocale().'/marketplace' }}" class="dropdown-toggle animated fadeIn animation-delay-9" data-name="ecommerce">Deals</a>
                     </li>
                 @endif
             </ul>

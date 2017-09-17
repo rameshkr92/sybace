@@ -1,6 +1,6 @@
 <?php
 
-namespace Sybace\Comment\Models;
+namespace Sybace\Blogs\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Lang;
@@ -16,7 +16,7 @@ class Comment extends Model
      */
 //    protected $hidden = ['category', 'section', 'options', 'created_by', 'updated_by'];
 //
-//    protected $with = ['trans', 'author', 'lastUpdateBy', 'itemSection'];
+    protected $with = ['trans', 'commentedBy'];
     
     /**
      * The attributes that should be casted to native types.
@@ -34,7 +34,14 @@ class Comment extends Model
      */
     public function trans()
     {
-        return $this->hasOne('\Sybace\Comment\Models\CommentSectionTrans', 'section_id')->where('lang', Lang::getlocale())->select("*");
+        return $this->hasOne('\Sybace\Blogs\Models\CommentTrans', 'comment_id')->where('lang', Lang::getlocale())->select("*");
+    }
+    /**
+     * Author relation.
+     */
+    public function commentedBy()
+    {
+        return $this->belongsTo('Sybace\Users\Models\User', 'from_user')->select(['id', 'name']);
     }
 
     public function scopeFilterStatus($query)
