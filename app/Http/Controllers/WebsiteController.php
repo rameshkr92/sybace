@@ -75,7 +75,6 @@ class WebsiteController extends Controller {
 
         $stores = webStore::where('active', 1)->get();
         $banners = Banner::where('active', '1')->whereDate('start_date', '<=', date('Y-m-d'))->whereDate('end_date', '>=', date('Y-m-d'))->get();
-//        dd($items);
         return view('website.home.index', compact('pages','activities', 'countries', 'areas', 'stores', 'banners','items'));
         /*
         if(\Request::segment(1) ==""){
@@ -91,6 +90,7 @@ class WebsiteController extends Controller {
         return redirect('/'.$lang.'/'.$cur_page);
         */
     }
+
     public function index(Request $request) {
         $request->request->add(['paginate' => 20]);
         $items = $this->storeApi->listItemsFront($request);
@@ -106,7 +106,6 @@ class WebsiteController extends Controller {
 
         $stores = webStore::where('active', 1)->get();
         $banners = Banner::where('active', '1')->whereDate('start_date', '<=', date('Y-m-d'))->whereDate('end_date', '>=', date('Y-m-d'))->get();
-//        dd($items);
         return view('website.home.index', compact('pages','activities', 'countries', 'areas', 'stores', 'banners','items'));
     }
 
@@ -317,8 +316,6 @@ class WebsiteController extends Controller {
     }
 
     public function editProfile() {
-        //        echo "hi";die;
-
         $this->redirectWhenInactive();
         if (isset(Auth::user()->id)) {
             $item = User::findOrFail(Auth::user()->id);
@@ -326,7 +323,10 @@ class WebsiteController extends Controller {
             $areas = Area::where('country_id', Auth::user()->country_id)->get();
             //           dd($areas);
             $edit = 1;
-            return view('website.auth.edit', compact('item', 'countries', 'areas', 'edit'));
+            $webmeta['title'] = "Edit Profile";
+            $webmeta['keywords'] = "Edit Profile";
+            $webmeta['description'] = "Edit Profile";
+            return view('website.auth.edit', compact('webmeta','item', 'countries', 'areas', 'edit'));
         } else {
             return redirect('/');
         }
@@ -605,7 +605,9 @@ class WebsiteController extends Controller {
         $this->redirectWhenInactive();
         if (isset(Auth::user()->id)) {
             $item = User::findOrFail(Auth::user()->id);
-
+            $webmeta['title'] = "Dashboard";
+            $webmeta['keywords'] = "Dashboard";
+            $webmeta['description'] = "Dashboard";
             return view('website.profile.dashboard', compact('ads_count', 'favourite_count', 'comment_count', 'user_fav', 'item', 'ad', 'comment', 'user_comments'));
         } else {
             return redirect('/');
@@ -650,7 +652,9 @@ class WebsiteController extends Controller {
                     $user_fav[$key]['created_at'] = $favourite[$key]->created_at;
                 }
             }
-
+            $webmeta['title'] = "Profile";
+            $webmeta['keywords'] = "Profile";
+            $webmeta['description'] = "Profile";
             return view('website.profile.profile', compact('ads_count', 'favourite_count', 'comment_count', 'user_fav', 'item', 'ad', 'comment', 'user_comments'));
         } else {
             return redirect('/');
@@ -710,7 +714,10 @@ class WebsiteController extends Controller {
         if ($request->method() == 'GET') {
 //            ContactusSection
             $sections = \Sybace\Contactus\Models\ContactusSection::where(array('active'=> "1"))->get();
-            return view('website.contact-us.index', compact('sections'));
+            $webmeta['title'] = "Contact Us";
+            $webmeta['keywords'] = "Ask your problem";
+            $webmeta['description'] = "Find solution of your problem.";
+            return view('website.contact-us.index', compact('webmeta','sections'));
         } elseif ($request->method() == 'POST') {
             Validator::extend('phone_number_must_between', function($attribute, $value, $parameters, $validator) {
                 if (!((strlen($value) == 12 && substr($value, 0, 4) == "9665" ) || (strlen($value) == 10 && substr($value, 0, 2) == "05") || (strlen($value) == 9 && substr($value, 0, 1) == "5"))) {

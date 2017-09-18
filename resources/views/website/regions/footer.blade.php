@@ -149,5 +149,6 @@
         <i class="zmdi zmdi-long-arrow-up"></i>
     </a>
 </div>
+<span style="display:inline-block;width:160px;height:30px;text-align:center;border:#000 1px dotted;font-family:Arial,Helvetica,sans-serif;font-size:11px;background-color:#FFFFFF;"><strong style="display:block;padding:0px;margin:0px;"></strong><a href="http://www.submitexpress.com/" title="SEO Company Los Angeles" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;">SEO Company Los Angeles</a></span>
 <!-- Go to www.addthis.com/dashboard to customize your tools -->
 {{--<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-59b4bf61d74632aa" async defer ></script>--}}

@@ -48,7 +48,10 @@ class FaqController extends Controller {
         if(count($item) == null){
             return redirect('/');
         }
-        return view('website.faqs.index', compact('item', 'trans'));
+        $webmeta['title'] = "FAQ's";
+        $webmeta['keywords'] = "FAQ, frequently ask your question";
+        $webmeta['description'] = "frequently ask your question and find solution";
+        return view('website.faqs.index', compact('webmeta','item', 'trans'));
     }
     /**
      * faq Contact
@@ -56,18 +59,6 @@ class FaqController extends Controller {
      * @var
      */
     public function faqContact(Request $request) {
-        if ($request->method() == 'GET') {
-//            ContactusSection
-            $sections = \Sybace\Contactus\Models\ContactusSection::where(array('active'=> "1"))->get();
-            return view('website.contact-us.index', compact('sections'));
-        } elseif ($request->method() == 'POST') {
-            Validator::extend('phone_number_must_between', function($attribute, $value, $parameters, $validator) {
-                if (!((strlen($value) == 12 && substr($value, 0, 4) == "9665" ) || (strlen($value) == 10 && substr($value, 0, 2) == "05") || (strlen($value) == 9 && substr($value, 0, 1) == "5"))) {
-                    return false;
-                } else {
-                    return true;
-                }
-            });
             $messages = array(
                 'phone_number_must_between' => 'Please enter a valid number.'
             );
@@ -142,6 +133,5 @@ class FaqController extends Controller {
             \Session::flash('alert-class', 'alert-success');
             \Session::flash('message', trans('project.contactus_success'));
             return back();
-        }
     }
 }

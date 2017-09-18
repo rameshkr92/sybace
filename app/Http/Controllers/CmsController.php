@@ -65,8 +65,10 @@ class CmsController extends Controller {
             return redirect('/');
         }
         $trans = PageTrans::where('page_id', $item->id)->get()->keyBy('lang')->toArray();
-//        $sections = Section::get();
-        return view('website.pages.show', compact('item', 'trans'));
+        $webmeta['title'] = $item->trans->title;
+        $webmeta['keywords'] = $item->trans->title;
+        $webmeta['description'] = $item->trans->title;
+        return view('website.pages.show', compact('webmeta','item', 'trans'));
 //        return view('website.pages.show');
     }
 

@@ -5,6 +5,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="msvalidate.01" content="2541484BA40CEA7D4C741B000D54FFA3" />
     <meta name="google-site-verification" content="SFyYqjOTEsC0C7LQGvnfkkdZAIsifRNG6X1FEzrtcA0" />
     @if(isset($webmeta))
         <title>{{ \Sybace\Settings\Models\Setting::find(1)->value }} - {{ $webmeta['title'] }}</title>
@@ -12,8 +13,9 @@
         <meta name="keywords" content="{{ $webmeta['keywords'] }}">
     @else
         <title>{{ \Sybace\Settings\Models\Setting::find(1)->value }} - Web Transformation, Digital Consultant & IT infrastructure</title>
-        <meta name="description" content="Sybace a web design and development solution , at Sybace our mission to help businesses throughout the world realize their potential , Sybace , Sybaceindia , Sybace india">
-        <meta name="keywords" content="web development companies, node js web development in India, nodejs development company, nodejs development company in india, nodejs development company in patna, ROR website development company, web design & development company , Sybace , Sybaceindia , Sybace india"> 
+        {{--<meta name="description" content="Sybace a web design and development solution , at Sybace our mission to help businesses throughout the world realize their potential">--}}
+        <meta name="description" content="Sybace — The Leading Website Development Company : Sybace offers best web design & development services at affordable prices, at Sybace our mission to help businesses throughout the world realize their potential.">
+        <meta name="keywords" content="web development companies, node js web development in India, nodejs development company, nodejs development company in india, nodejs development company in patna, ROR website development company, web design & development company , Sybace , Sybaceindia , Sybace india , web development company , sybacesystem">
     @endif
     <meta name="robots" content="index, follow"/>
     <meta name="author" Content="Sybace Limited">

@@ -45,7 +45,10 @@ class BlogController extends Controller {
      */
     public function index(Request $request) {
         $items = Blog::where(array('active'=>'1'))->get();
-        return view('website.blogs.index', compact('items', 'trans'));
+        $webmeta['title'] = "Blog";
+        $webmeta['keywords'] = "php tutorial , web development , website development , ruby tutorial , ruby on rails tutorial , mean stack , meanstack , nodejs tutorial, mongodb tutorial , learn php online , learn ruby on rails online , learn nodejs online.";
+        $webmeta['description'] = "Learn web technology online , web development solutions";
+        return view('website.blogs.index', compact('webmeta','items', 'trans'));
     }
     /*
      * Function to show blog detail
