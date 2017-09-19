@@ -28,7 +28,7 @@
                 <p><strong><i class="zmdi zmdi-info"></i></strong>Learn to code and take control of your future.</p>
             </div>
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-9">
                     @if(isset($items))
                         @foreach($items as $k=>$item)
                             <div class="col-md-12 blog-items">
@@ -57,6 +57,9 @@
                             </div>
                         @endforeach
                     @endif
+                </div>
+                <div class="col-md-3">
+                    <div data-WRID="WRID-150503454621794760" data-widgetType="searchWidget" data-class="affiliateAdsByFlipkart" height="250" width="300" ></div><script async src="//affiliate.flipkart.com/affiliate/widgets/FKAffiliateWidgets.js"></script>
                 </div>
                 <!--<div class="col-md-3">
                     <div class="card card-success">

@@ -183,6 +183,7 @@ return [
         Sybace\Faqs\FaqsServiceProvider::class,
         Sybace\Articles\ArticlesServiceProvider::class,
         Sybace\Blogs\BlogsServiceProvider::class,
+        Sybace\Tutorials\TutorialsServiceProvider::class,
 
         /*
          * Other Vendors Service Providers...

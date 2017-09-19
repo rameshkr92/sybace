@@ -40,7 +40,8 @@
             "Sybace\\Ads\\": "packages/sybace/ads/src",
             "Sybace\\Faqs\\": "packages/sybace/faqs/src",
             "Sybace\\Articles\\": "packages/sybace/articles/src",
-            "Sybace\\Blogs\\": "packages/sybace/blogs/src"
+            "Sybace\\Blogs\\": "packages/sybace/blogs/src",
+            "Sybace\\Tutorials\\": "packages/sybace/tutorials/src"
         },
         "files": [
             "app/Libraries/helpers.php"

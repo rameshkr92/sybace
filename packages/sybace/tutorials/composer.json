@@ -1,0 +1,23 @@
+{
+    "name": "sybace/tutorials",
+    "description": "Manage Sybace framework tutorials",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Mahmoud Eid",
+            "email": "me@mahmoudeid.net"
+        }
+    ],
+    "repositories": [
+    {
+        "type": "vcs",
+        "url":  "git@bitbucket.org:sybace/tutorials.git"
+    }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Sybace\\Contactus\\": "src"
+        }
+    },
+    "minimum-stability": "dev"
+}
