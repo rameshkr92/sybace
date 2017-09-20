@@ -9,19 +9,19 @@
                             <a href="{{ url('/').'/'.Lang::getlocale().'/home' }}"><i class="zmdi zmdi-home"></i> Home</a>
                         </li>
                         {{--<li>--}}
-                            {{--<a href="page-blog.html"><i class="zmdi zmdi-edit"></i> Blog</a>--}}
+                        {{--<a href="page-blog.html"><i class="zmdi zmdi-edit"></i> Blog</a>--}}
                         {{--</li>--}}
                         {{--<li>--}}
-                            {{--<a href="page-blog.html"><i class="zmdi zmdi-image-o"></i> Portafolio</a>--}}
+                        {{--<a href="page-blog.html"><i class="zmdi zmdi-image-o"></i> Portafolio</a>--}}
                         {{--</li>--}}
                         {{--<li>--}}
-                            {{--<a href="portfolio-filters_sidebar.html"><i class="zmdi zmdi-case"></i> Works</a>--}}
+                        {{--<a href="portfolio-filters_sidebar.html"><i class="zmdi zmdi-case"></i> Works</a>--}}
                         {{--</li>--}}
                         {{--<li>--}}
-                            {{--<a href="page-timeline_left2.html"><i class="zmdi zmdi-time"></i> Timeline</a>--}}
+                        {{--<a href="page-timeline_left2.html"><i class="zmdi zmdi-time"></i> Timeline</a>--}}
                         {{--</li>--}}
                         {{--<li>--}}
-                            {{--<a href="page-pricing.html"><i class="zmdi zmdi-money"></i> Pricing</a>--}}
+                        {{--<a href="page-pricing.html"><i class="zmdi zmdi-money"></i> Pricing</a>--}}
                         {{--</li>--}}
                         <li>
                             <a href="{{ action('CmsController@showPage','about-us') }}"><i class="zmdi zmdi-favorite-outline"></i> About Us</a>
@@ -30,13 +30,13 @@
                             <a href="{{ action('CmsController@showPage','disclaimer') }}"><i class="zmdi zmdi-accounts"></i> Disclaimer</a>
                         </li>
                         {{--<li>--}}
-                            {{--<a href="page-services.html"><i class="zmdi zmdi-face"></i> Services</a>--}}
+                        {{--<a href="page-services.html"><i class="zmdi zmdi-face"></i> Services</a>--}}
                         {{--</li>--}}
                         <li>
                             <a href="{{ action('FaqController@faqs') }}"><i class="zmdi zmdi-help"></i> FAQ</a>
                         </li>
                         {{--<li>--}}
-                            {{--<a href="page-login2.html"><i class="zmdi zmdi-lock"></i> Login</a>--}}
+                        {{--<a href="page-login2.html"><i class="zmdi zmdi-lock"></i> Login</a>--}}
                         {{--</li>--}}
                         <li>
                             <a href="{{ action("WebsiteController@createContact")}}"><i class="zmdi zmdi-email"></i> Contact</a>
@@ -149,6 +149,7 @@
         <i class="zmdi zmdi-long-arrow-up"></i>
     </a>
 </div>
-<span style="display:inline-block;width:160px;height:30px;text-align:center;border:#000 1px dotted;font-family:Arial,Helvetica,sans-serif;font-size:11px;background-color:#FFFFFF;"><strong style="display:block;padding:0px;margin:0px;"></strong><a href="http://www.submitexpress.com/" title="SEO Company Los Angeles" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;">SEO Company Los Angeles</a></span>
-<!-- Go to www.addthis.com/dashboard to customize your tools -->
-{{--<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-59b4bf61d74632aa" async defer ></script>--}}
+@if(Request::segment(1)=='blog')
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-59b4bf61d74632aa" async defer ></script>
+@endif

@@ -8,17 +8,19 @@
     <meta name="msvalidate.01" content="2541484BA40CEA7D4C741B000D54FFA3" />
     <meta name="google-site-verification" content="SFyYqjOTEsC0C7LQGvnfkkdZAIsifRNG6X1FEzrtcA0" />
     @if(isset($webmeta))
-        <title>{{ \Sybace\Settings\Models\Setting::find(1)->value }} - {{ $webmeta['title'] }}</title>
-        <meta name="description" content="{{ $webmeta['description'] }}">
-        <meta name="keywords" content="{{ $webmeta['keywords'] }}">
+    <title>{{ \Sybace\Settings\Models\Setting::find(1)->value }} - {{ $webmeta['title'] }}</title>
+    <meta name="description" content="{{ $webmeta['description'] }}">
+    <meta name="keywords" content="{{ $webmeta['keywords'] }}">
     @else
-        <title>{{ \Sybace\Settings\Models\Setting::find(1)->value }} - Web Transformation, Digital Consultant & IT infrastructure</title>
-        {{--<meta name="description" content="Sybace a web design and development solution , at Sybace our mission to help businesses throughout the world realize their potential">--}}
-        <meta name="description" content="Sybace — The Leading Website Development Company : Sybace offers best web design & development services at affordable prices, at Sybace our mission to help businesses throughout the world realize their potential.">
-        <meta name="keywords" content="custom software development company, responsive web design, web design company, new business ideas, website maker, business consultant, web design & development company , Sybace , Sybaceindia , Sybace india , web development company , sybacesystem, how to create a website, how to make a website, agile methodology, create a website, website builder, digital marketing, web design, business ideas, website design, web developer, graphic design websites, e commerce website, web design software, ecommerce website development, website development company, innovative business ideas, freelance web developer, web application development, web programming, site design, software development services, creative websites, web development services, web design and development, web solutions, global consultancy">
+    <title>{{ \Sybace\Settings\Models\Setting::find(1)->value }} - Custom Software Development Outsourcing</title>
+    <meta name="description" content="Sybace System is a custom software development consulting company that offers custom software development and IT consulting service to it's customer’s business innovations through technology, Web development service with Best quality.">
+    <meta name="keywords" content="software development company, custom software development, mobile application development company">
     @endif
-    <meta name="robots" content="index, follow"/>
     <meta name="author" Content="Sybace Limited">
+    <meta name="Googlebot" content="index, follow" />
+    <meta name="distribution" content="global" />
+    <meta name="coverage" content="worldwide" />
+    <meta name="robots" content="NOODP,NOYDIR" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Facebook META -->
     <meta property="fb:app_id" content="112146496123745">
