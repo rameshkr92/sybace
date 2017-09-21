@@ -12,8 +12,8 @@ return [
     |
     */
     'manage' => 'Manage',
-    'blogs' => 'Blogs',
-    'blog' => 'Blog',
+    'tutorials' => 'Tutorials',
+    'tutorial' => 'Tutorial',
     'page' => 'Page',
     'all' => 'All',
     'nameEmail' => 'Name / Email',

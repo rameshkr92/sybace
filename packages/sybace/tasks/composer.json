@@ -1,0 +1,17 @@
+{
+    "name": "sybace/tasks",
+    "description": "Manage Sybace framework ads",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Ramesh Kumar",
+            "email": "ramesh@panaceatek.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Sybace\\Stores\\": "src"
+        }
+    },
+    "minimum-stability": "dev"
+}
