@@ -66,9 +66,9 @@
                 <li class="@if(\Request::segment(3) == "about-us") active @endif">
                     <a href="{{ action('CmsController@showPage','about-us') }}" class="dropdown-toggle animated fadeIn animation-delay-5" data-name="page">About Us</a>
                 </li>
-                {{--<li class="@if(\Request::segment(3) == "careers") active @endif">--}}
-                    {{--<a href="{{ action('CmsController@showPage','careers') }}" class="dropdown-toggle animated fadeIn animation-delay-6" data-name="component">Careers</a>--}}
-                {{--</li>--}}
+                <li class="@if(\Request::segment(3) == "careers") active @endif">
+                    <a href="{{ action('CmsController@showPage','careers') }}" class="dropdown-toggle animated fadeIn animation-delay-6" data-name="component">Careers</a>
+                </li>
                 <li class="@if(\Request::segment(3) == "blog") active @endif">
                     <a href="{{ action('BlogController@index') }}" class="dropdown-toggle animated fadeIn animation-delay-7" data-name="blog">Blog</a>
                 </li>
@@ -115,109 +115,6 @@
                         <a href="{{ url('/').'/'.Lang::getlocale().'/marketplace' }}" class="dropdown-toggle animated fadeIn animation-delay-9" data-name="ecommerce">Deals</a>
                     </li>
                 @endif
-                <li class="dropdown yamm-fw">
-                    <a href="#" class="dropdown-toggle animated fadeIn animation-delay-6" data-toggle="dropdown" data-hover="dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-name="component">UI Elements
-                        <i class="zmdi zmdi-chevron-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-megamenu animated fadeIn animated-2x">
-                        <li>
-                            <div class="row">
-                                <div class="col-sm-3 megamenu-col">
-                                    <div class="megamenu-block animated fadeInLeft animated-2x">
-                                        <h3 class="megamenu-block-title"><i class="fa fa-bold"></i> MEAN</h3>
-                                        <ul class="megamenu-block-list">
-                                            <li>
-                                                <a class="withripple" href="component-typography.html"><i class="fa fa-font"></i> MONGO</a>
-                                            </li>
-                                            <li>
-                                                <a class="withripple" href="component-headers.html"><i class="fa fa-header"></i> EXPRESS</a>
-                                            </li>
-                                            <li>
-                                                <a class="withripple" href="component-dividers.html"><i class="fa fa-arrows-h"></i> ANGULAR</a>
-                                            </li>
-                                            <li>
-                                                <a class="withripple" href="component-blockquotes.html"><i class="fa fa-quote-right"></i> NODE</a>
-                                            </li>
-                                            <li>
-                                                <a class="withripple" href="component-blockquotes.html"><i class="fa fa-quote-right"></i> Socket</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-sm-3 megamenu-col">
-                                    <div class="megamenu-block animated fadeInLeft animated-2x">
-                                        <h3 class="megamenu-block-title"><i class="fa fa-list-alt"></i> PHP & MySQL</h3>
-                                        <ul class="megamenu-block-list">
-                                            <li>
-                                                <a class="withripple" href="component-panels.html">
-                                                    <i class="zmdi zmdi-view-agenda"></i> PHP</a>
-                                            </li>
-                                            <li>
-                                                <a class="withripple" href="component-alerts.html">
-                                                    <i class="zmdi zmdi-info"></i> MySQL</a>
-                                            </li>
-                                            <li>
-                                                <a class="withripple" href="component-alerts.html">
-                                                    <i class="zmdi zmdi-info"></i> LARAVEL</a>
-                                            </li>
-                                            <li>
-                                                <a class="withripple" href="component-alerts.html">
-                                                    <i class="zmdi zmdi-info"></i> Codeigniter</a>
-                                            </li>
-                                            <li>
-                                                <a class="withripple" href="component-alerts.html">
-                                                    <i class="zmdi zmdi-info"></i> CakePHP</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-sm-3 megamenu-col">
-                                    <div class="megamenu-block animated fadeInRight animated-2x">
-                                        <h3 class="megamenu-block-title"><i class="zmdi zmdi-folder-star-alt"></i> RUBY & MySQL</h3>
-                                        <ul class="megamenu-block-list">
-                                            <li>
-                                                <a class="withripple" href="component-cards.html">
-                                                    <i class="zmdi zmdi-card-membership"></i> Ruby</a>
-                                            </li>
-                                            <li>
-                                                <a class="withripple" href="component-composite-cards.html">
-                                                    <i class="zmdi zmdi-card-giftcard"></i> Ruby On Rails</a>
-                                            </li>
-                                            <li>
-                                                <a class="withripple" href="component-counters.html">
-                                                    <i class="zmdi zmdi-n-6-square"></i> HAML</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-sm-3 megamenu-col">
-                                    <div class="megamenu-block animated fadeInRight animated-2x">
-                                        <h3 class="megamenu-block-title"><i class="fa fa-briefcase"></i> JS/CSS</h3>
-                                        <ul class="megamenu-block-list">
-                                            <li>
-                                                <a class="withripple" href="component-icons-basic.html">
-                                                    <i class="fa fa-arrow-circle-right"></i> JavaScript</a>
-                                            </li>
-                                            <li>
-                                                <a class="withripple" href="component-icons-fontawesome.html">
-                                                    <i class="fa fa-arrow-circle-right"></i> jQuery</a>
-                                            </li>
-                                            <li>
-                                                <a class="withripple" href="component-icons-glyphicons.html">
-                                                    <i class="fa fa-arrow-circle-right"></i> CSS</a>
-                                            </li>
-                                            <li>
-                                                <a class="withripple" href="component-icons-glyphicons.html">
-                                                    <i class="fa fa-arrow-circle-right"></i> Bootstrap</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </li>
-
             </ul>
         </div>
         <!-- navbar-collapse collapse -->
