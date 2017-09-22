@@ -18,7 +18,6 @@
     <meta name="Googlebot" content="index, follow" />
     <meta name="distribution" content="global" />
     <meta name="coverage" content="worldwide" />
-    <meta name="robots" content="index, follow"/>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Facebook META -->
     <meta property="fb:app_id" content="112146496123745">
