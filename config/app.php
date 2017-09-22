@@ -184,6 +184,7 @@ return [
         Sybace\Articles\ArticlesServiceProvider::class,
         Sybace\Blogs\BlogsServiceProvider::class,
         Sybace\Tutorials\TutorialsServiceProvider::class,
+        Sybace\Tasks\TasksServiceProvider::class,
 
         /*
          * Other Vendors Service Providers...
@@ -192,6 +193,8 @@ return [
         Unisharp\Ckeditor\ServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
         Skovmand\Mailchimp\MailchimpServiceProvider::class,
+        // seotool providers
+        Artesaos\SEOTools\Providers\SEOToolsServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -250,6 +253,12 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Image' => 'Intervention\Image\Facades\Image',
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        // seo Facades
+//        'SEOMeta'   => Artesaos\SEOTools\Facades\SEOMeta::class,
+//        'OpenGraph' => Artesaos\SEOTools\Facades\OpenGraph::class,
+//        'Twitter'   => Artesaos\SEOTools\Facades\TwitterCard::class,
+        // or
+        'SEO' => Artesaos\SEOTools\Facades\SEOTools::class,
 
     ],
 
