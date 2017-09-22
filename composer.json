@@ -10,7 +10,8 @@
         "intervention/image": "~2.2",
         "unisharp/laravel-ckeditor": "^4.6",
         "laravel/socialite": "^2.0",
-        "skovmand/mailchimp-laravel": "^1.0"
+        "skovmand/mailchimp-laravel": "^1.0",
+        "artesaos/seotools": "^0.10.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -41,7 +42,8 @@
             "Sybace\\Faqs\\": "packages/sybace/faqs/src",
             "Sybace\\Articles\\": "packages/sybace/articles/src",
             "Sybace\\Blogs\\": "packages/sybace/blogs/src",
-            "Sybace\\Tutorials\\": "packages/sybace/tutorials/src"
+            "Sybace\\Tutorials\\": "packages/sybace/tutorials/src",
+            "Sybace\\Tasks\\": "packages/sybace/tasks/src"
         },
         "files": [
             "app/Libraries/helpers.php"
