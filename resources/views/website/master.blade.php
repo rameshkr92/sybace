@@ -12,7 +12,7 @@
     <meta name="description" content="{{ $webmeta['description'] }}">
     @else
     <title>{{ \Sybace\Settings\Models\Setting::find(1)->value }} - Web Design & Development Solutions</title>
-    <meta name="description" content="Sybace is a custom web design & development company that offers custom  development and IT consulting service to it's customer’s business innovations through technology, Web development service with Best quality.">
+    <meta name="description" content="Sybace is a custom web design & development company that offers IT consulting service to it's customers, Web development service with Best quality.">
     @endif
     <meta name="author" Content="Sybace Limited">
     <meta name="Googlebot" content="index, follow" />
