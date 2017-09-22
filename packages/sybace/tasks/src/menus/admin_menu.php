@@ -1,18 +1,18 @@
 <?php
-$adminMenu[13] = [
+$adminMenu[20] = [
         'icon' => 'table',
         'list_head' => [
-                'name' => trans('Stores::stores.stores'),
-                'link' => '/'.App::getLocale().'/admin/stores',
+                'name' => trans('Tasks::tasks.tasks'),
+                'link' => '/'.App::getLocale().'/admin/tasks',
         ],
         'list_tree'=> [
                 0 => [
-                    'name' => trans('Stores::stores.all').' '.trans('Stores::stores.stores'),
-                    'link' => '/'.App::getLocale().'/admin/stores',
+                    'name' => trans('Tasks::tasks.all').' '.trans('Tasks::tasks.tasks'),
+                    'link' => '/'.App::getLocale().'/admin/tasks',
                 ],
                 1 => [
-                    'name' => trans('Stores::stores.create').' '.trans('Stores::stores.store'),
-                    'link' => '/'.App::getLocale().'/admin/stores/create',
+                    'name' => trans('Tasks::tasks.create').' '.trans('Tasks::tasks.store'),
+                    'link' => '/'.App::getLocale().'/admin/tasks/create',
                 ]
         ]
 ];

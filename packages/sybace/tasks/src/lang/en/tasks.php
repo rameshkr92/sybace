@@ -13,8 +13,8 @@ return [
     */
     'create' => 'Create',
     'all' => 'All',
-    'stores' => 'Stores',
-    'store' => 'Store',
+    'tasks' => 'Tasks',
+    'store' => 'Task',
     'location' => 'Location',
     'instagram_facebook_media' => 'Instagram/Facebook Media',
     'additional_media' => 'Additional Media',
