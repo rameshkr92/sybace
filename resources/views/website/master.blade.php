@@ -12,26 +12,24 @@
     <meta name="description" content="{{ $webmeta['description'] }}">
     @else
     <title>{{ \Sybace\Settings\Models\Setting::find(1)->value }} - Web Design & Development Solutions</title>
-    <meta name="description" content="Sybase is a custom web design & development company that offers custom web development and IT consulting service to its customers business innovations through technology.">
-    <meta name="keywords" content="website development, website design, e-commerce website development, mobile application development, php , wordpress, ruby, ruby on rails, node.js, nodejs ">
+    <meta name="description" content="Sybace is a custom web design & development company that offers custom  development and IT consulting service to it's customer’s business innovations through technology, Web development service with Best quality.">
     @endif
     <meta name="author" Content="Sybace Limited">
     <meta name="Googlebot" content="index, follow" />
     <meta name="distribution" content="global" />
     <meta name="coverage" content="worldwide" />
-    <meta name="robots" content="NOODP,NOYDIR" />
+    <meta name="robots" content="index, follow"/>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Facebook META -->
     <meta property="fb:app_id" content="112146496123745">
     <meta property="og:site_name" content="SyBace">
     <meta property="og:title" content="sybace.com">
     <meta property="og:description" content="Sybace a web design and development solution , at Sybace our mission to help businesses throughout the world realize their potential , Sybace , Sybaceindia , Sybace india">
-    <meta property="og:url" content="{{ url('/') }}">
-    <meta property="og:image" content="{{ url('/') }}/public/website_assets/img/logo.png">
+    <meta property="og:url" content="https://www.sybace.com/">
+    <meta property="og:image" content="https://www.sybace.com/public/website_assets/img/logo-200x200.png">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="en_US" />
     <link rel="canonical" href="https://www.sybace.com/"/>
-    <meta property="og:locale" content="en_US" />
     <meta name="language" content="english"/>
     <script type='application/ld+json'>
 {
