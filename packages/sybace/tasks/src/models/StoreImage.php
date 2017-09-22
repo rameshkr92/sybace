@@ -1,13 +1,13 @@
 <?php
 
-namespace Sybace\Stores\Models;
+namespace Sybace\Tasks\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Lang;
 
 class StoreImage extends Model
 {
-    protected $table = 'stores_images';
+    protected $table = 'tasks_images';
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -15,7 +15,7 @@ class StoreImage extends Model
      * @var array
      */
 
-    protected $hidden = ['store_id'];
+    protected $hidden = ['task_id'];
 
     protected $casts = [
         'options' => 'array',
