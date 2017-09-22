@@ -24,7 +24,7 @@
         <div class="container wow fadeInUp">
             <div class="row">
                 <div class="col-md-6 text-justify">
-                    <h2 class="color-primary right-line">Our Vision & Mission</h2>
+                    <h2 class="color-primary right-line">Sybace Vision & Mission</h2>
                     {{--<p class="dropcaps">--}}
                     {{--Your success is our success--}}
                     {{--</p>--}}
@@ -45,7 +45,7 @@
                     </p>
                 </div>
                 <div class="col-md-6">
-                    <h2 class="color-primary right-line">Our Approach</h2>
+                    <h2 class="color-primary right-line">Sybace Approach</h2>
                     <div class="panel-group ms-collapse" id="accordion" role="tablist" aria-multiselectable="true">
                         <div class="panel panel-primary">
                             <div class="panel-heading" role="tab" id="headingOne">

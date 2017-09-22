@@ -10,11 +10,10 @@
     @if(isset($webmeta))
     <title>{{ \Sybace\Settings\Models\Setting::find(1)->value }} - {{ $webmeta['title'] }}</title>
     <meta name="description" content="{{ $webmeta['description'] }}">
-    <meta name="keywords" content="{{ $webmeta['keywords'] }}">
     @else
-    <title>{{ \Sybace\Settings\Models\Setting::find(1)->value }} - Custom Software Development Outsourcing</title>
-    <meta name="description" content="Sybace System is a custom software development consulting company that offers custom software development and IT consulting service to it's customer’s business innovations through technology, Web development service with Best quality.">
-    <meta name="keywords" content="software development company, custom software development, mobile application development company">
+    <title>{{ \Sybace\Settings\Models\Setting::find(1)->value }} - Web Design & Development Solutions</title>
+    <meta name="description" content="Sybase is a custom web design & development company that offers custom web development and IT consulting service to its customers business innovations through technology.">
+    <meta name="keywords" content="website development, website design, e-commerce website development, mobile application development, php , wordpress, ruby, ruby on rails, node.js, nodejs ">
     @endif
     <meta name="author" Content="Sybace Limited">
     <meta name="Googlebot" content="index, follow" />
@@ -70,8 +69,8 @@
         <!--<link rel="stylesheet" href="{{ asset('public/website_assets/css/preload.min.css') }}" />-->
         <!--<link rel="stylesheet" href="{{ asset('public/website_assets/css/plugins.min.css') }}" />-->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,400,300,300italic,400italic,500,700|Indie+Flower:400">
-        <link rel="stylesheet" href="{{ asset('public/website_assets/css/style.light-red-500.min.css') }}" />
     </noscript>
+    <link rel="stylesheet" href="{{ asset('public/website_assets/css/style.light-red-500.min.css') }}" />
     <script src="{{ asset('public/website_assets/js/jquery-3.1.1.min.js') }}" type="text/javascript" ></script>
     <!--<link rel="stylesheet" href="{{ asset('public/website_assets/css/main.css') }}" />-->
     <!--[if lt IE 9]>
