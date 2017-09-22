@@ -30,6 +30,12 @@ use Validator;
 use Sybace\Pages\Models\Page;
 use Socialite;
 //use Illuminate\Support\Facades\Validator;
+//seotool
+//use SEOMeta;
+//use OpenGraph;
+//use Twitter;
+## or
+use SEO;
 
 class WebsiteController extends Controller {
 
@@ -61,6 +67,13 @@ class WebsiteController extends Controller {
      * @var view
      */
     public function home(Request $request) {
+        SEO::setTitle('Home');
+        SEO::setDescription('This is my page description');
+        SEO::opengraph()->setUrl('http://current.url.com');
+        SEO::setCanonical('https://codecasts.com.br/lesson');
+        SEO::opengraph()->addProperty('type', 'articles');
+        SEO::twitter()->setSite('@LuizVinicius73');
+
         $request->request->add(['paginate' => 20]);
         $items = $this->storeApi->listItemsFront($request);
 
@@ -92,6 +105,13 @@ class WebsiteController extends Controller {
     }
 
     public function index(Request $request) {
+        SEO::setTitle('Home');
+        SEO::setDescription('This is my page description');
+        SEO::opengraph()->setUrl('http://current.url.com');
+        SEO::setCanonical('https://codecasts.com.br/lesson');
+        SEO::opengraph()->addProperty('type', 'articles');
+        SEO::twitter()->setSite('@LuizVinicius73');
+
         $request->request->add(['paginate' => 20]);
         $items = $this->storeApi->listItemsFront($request);
 

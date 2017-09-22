@@ -1,6 +1,6 @@
 <?php
 
-$adminMenu[18] = [
+$adminMenu[15] = [
         'icon' => 'table',
         'list_head' => [
                 'name' => trans('Articles::articles.articles'),

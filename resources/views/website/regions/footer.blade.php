@@ -69,7 +69,9 @@
                             @foreach($arr_articles as $articles)
                                 <div class="media">
                                     <div class="media-left media-middle">
-                                        <a href="javascript:void(0)"><img class="media-object media-object-circle" src="{{url('/')}}/public/website_assets/img/demo/p75.jpg" alt="..."> </a>
+                                        <a href="javascript:void(0)">
+                                            <img class="media-object media-object-circle" src="{{url('/')}}/public/website_assets/img/demo/p75.jpg"  alt="Articles" title="Articles">
+                                        </a>
                                     </div>
                                     <div class="media-body">
                                         <h4 class="media-heading">
@@ -120,9 +122,9 @@
                         {{--<i class="zmdi zmdi-youtube"></i>--}}
                         {{--</a>--}}
                         {{--<br>--}}
-                        {{--<a href="javascript:void(0)" class="btn-circle btn-google">--}}
-                        {{--<i class="zmdi zmdi-google"></i>--}}
-                        {{--</a>--}}
+                        <a href="https://plus.google.com/103956882661141313645" target="_blank" class="btn-circle btn-google">
+                        <i class="zmdi zmdi-google"></i>
+                        </a>
                         {{--<a href="javascript:void(0)" class="btn-circle btn-instagram">--}}
                         {{--<i class="zmdi zmdi-instagram"></i>--}}
                         {{--</a>--}}
@@ -141,7 +143,7 @@
         <p>Copyright &copy; {{date("Y")}} {{ \Sybace\Settings\Models\Setting::find(1)->value }} Web Technology Private Limited</p>
     </div>
     <div class="ftr__made-in-india">
-        Made in <img class="ftr__flag" src="{{url('/')}}/public/website_assets/img/in.png" alt="IN"/> with <span class="ftr-heart">❤</span>
+        Made in <img class="ftr__flag" src="{{url('/')}}/public/website_assets/img/in.png" alt="IN" title="IN"/> with <span class="ftr-heart">❤</span>
     </div>
 </footer>
 <div class="btn-back-top">

@@ -11,7 +11,7 @@ $adminMenu[20] = [
                     'link' => '/'.App::getLocale().'/admin/tasks',
                 ],
                 1 => [
-                    'name' => trans('Tasks::tasks.create').' '.trans('Tasks::tasks.task'),
+                    'name' => trans('Tasks::tasks.create').' '.trans('Tasks::tasks.store'),
                     'link' => '/'.App::getLocale().'/admin/tasks/create',
                 ]
         ]

@@ -10,29 +10,25 @@
     @if(isset($webmeta))
     <title>{{ \Sybace\Settings\Models\Setting::find(1)->value }} - {{ $webmeta['title'] }}</title>
     <meta name="description" content="{{ $webmeta['description'] }}">
-    <meta name="keywords" content="{{ $webmeta['keywords'] }}">
     @else
-    <title>{{ \Sybace\Settings\Models\Setting::find(1)->value }} - Custom Software Development Outsourcing</title>
-    <meta name="description" content="Sybace System is a custom software development consulting company that offers custom software development and IT consulting service to it's customer’s business innovations through technology, Web development service with Best quality.">
-    <meta name="keywords" content="software development company, custom software development, mobile application development company">
+    <title>{{ \Sybace\Settings\Models\Setting::find(1)->value }} - Web Design & Development Solutions</title>
+    <meta name="description" content="Sybace is a custom web design & development company that offers IT consulting service to it's customers, Web development service with Best quality.">
     @endif
     <meta name="author" Content="Sybace Limited">
     <meta name="Googlebot" content="index, follow" />
     <meta name="distribution" content="global" />
     <meta name="coverage" content="worldwide" />
-    <meta name="robots" content="NOODP,NOYDIR" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Facebook META -->
     <meta property="fb:app_id" content="112146496123745">
     <meta property="og:site_name" content="SyBace">
     <meta property="og:title" content="sybace.com">
     <meta property="og:description" content="Sybace a web design and development solution , at Sybace our mission to help businesses throughout the world realize their potential , Sybace , Sybaceindia , Sybace india">
-    <meta property="og:url" content="{{ url('/') }}">
-    <meta property="og:image" content="{{ url('/') }}/public/website_assets/img/logo.png">
+    <meta property="og:url" content="https://www.sybace.com/">
+    <meta property="og:image" content="https://www.sybace.com/public/website_assets/img/logo-200x200.png">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="en_US" />
     <link rel="canonical" href="https://www.sybace.com/"/>
-    <meta property="og:locale" content="en_US" />
     <meta name="language" content="english"/>
     <script type='application/ld+json'>
 {
@@ -70,8 +66,8 @@
         <!--<link rel="stylesheet" href="{{ asset('public/website_assets/css/preload.min.css') }}" />-->
         <!--<link rel="stylesheet" href="{{ asset('public/website_assets/css/plugins.min.css') }}" />-->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,400,300,300italic,400italic,500,700|Indie+Flower:400">
-        <link rel="stylesheet" href="{{ asset('public/website_assets/css/style.light-red-500.min.css') }}" />
     </noscript>
+    <link rel="stylesheet" href="{{ asset('public/website_assets/css/style.light-red-500.min.css') }}" />
     <script src="{{ asset('public/website_assets/js/jquery-3.1.1.min.js') }}" type="text/javascript" ></script>
     <!--<link rel="stylesheet" href="{{ asset('public/website_assets/css/main.css') }}" />-->
     <!--[if lt IE 9]>
