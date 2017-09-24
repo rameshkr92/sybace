@@ -1,12 +1,12 @@
 <?php
-namespace Sybace\Blogs\Controllers;
+namespace Sybace\Tutorials\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Sybace\Blogs\Models\Blog;
-use Sybace\Blogs\Models\BlogTrans;
-use Sybace\Blogs\Models\Comment;
-use Sybace\Blogs\Models\CommentTrans;
+use Sybace\Tutorials\Models\Tutorial;
+use Sybace\Tutorials\Models\TutorialTrans;
+use Sybace\Tutorials\Models\Comment;
+use Sybace\Tutorials\Models\CommentTrans;
 use Illuminate\Support\Facades\Input;
 use Auth;
 use Lang;
@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\URL;
 use Config;
 use Illuminate\Support\Facades\Mail;
 
-class BlogsApiController extends Controller
+class TutorialsCategoriesApiController extends Controller
 {
     /*
    |--------------------------------------------------------------------------
@@ -34,7 +34,7 @@ class BlogsApiController extends Controller
     public function validatation($request)
     {
         $languages = config('sybace.locales');
-        $rules['slug'] = 'unique:blogs';
+        $rules['slug'] = 'unique:tutorials';
         $rules = [];
         if(count($languages)) {
             foreach ($languages as $key => $language) {
@@ -55,45 +55,45 @@ class BlogsApiController extends Controller
      */
     public function listItems(Request $request)
     {
-        $contactrequest = Blog::FilterStatus()->orderBy('id', 'DESC')->paginate($request->get('paginate'));
+        $contactrequest = Tutorial::FilterStatus()->orderBy('id', 'DESC')->paginate($request->get('paginate'));
         return $contactrequest;
     }
     /**
      * @param
      * @return
      */
-    public function storeBlog(Request $request)
+    public function storeTutorial(Request $request)
     {
         $validator = $this->validatation($request);
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()], 422);
         }
-        $ar_name = BlogTrans::where('name', ucfirst(strtolower($request->name_ar)))->first();
-        $en_name = BlogTrans::where('name', ucfirst(strtolower($request->name_en)))->first();
+        $ar_name = TutorialTrans::where('name', ucfirst(strtolower($request->name_ar)))->first();
+        $en_name = TutorialTrans::where('name', ucfirst(strtolower($request->name_en)))->first();
 
         if (isset($ar_name->name) || isset($en_name->name)) {
-            $response = ['alert-class'=>'alert-danger','message' => trans('Blogs::blogs.duplicate_section_msg')];
+            $response = ['alert-class'=>'alert-danger','message' => trans('Tutorials::tutorials.duplicate_section_msg')];
             return response()->json($response, 201);
         }
 
-        $blogs = new Blog();
+        $tutorials = new Tutorial();
         if ($request->author) {
             $author = $request->author;
         } else {
             $author = Auth::user()->id;
         }
 
-        $blogs->created_by = $author;
-        $blogs->updated_by = $author;
-        $blogs->active = false;
+        $tutorials->created_by = $author;
+        $tutorials->updated_by = $author;
+        $tutorials->active = false;
         if ($request->active) {
-            $blogs->active = true;
+            $tutorials->active = true;
         }
-        $blogs->slug = $this->seoUrl($request->name_en);
+        $tutorials->slug = $this->seoUrl($request->name_en);
         // Media
         $options['media']['main_image_id'] = $request->main_image_id;
-        $blogs->options = $options;
-        $blogs->save();
+        $tutorials->options = $options;
+        $tutorials->save();
 
         // Translation
         foreach ($request->language as $langCode) {
@@ -102,18 +102,18 @@ class BlogsApiController extends Controller
             $seo_title = 'seo_title_'.$langCode;
             $meta_keywords = 'meta_keywords_'.$langCode;
             $meta_description = 'meta_description_'.$langCode;
-            $blogTrans = new BlogTrans;
-            $blogTrans->post_id = $blogs->id;
-            $blogTrans->name = ucwords(strtolower($request->$name));
-            $blogTrans->body = $request->$body;
-            $blogTrans->seo_title = $request->$seo_title;
-            $blogTrans->meta_keywords = $request->$meta_keywords;
-            $blogTrans->meta_description = $request->$meta_description;
-            $blogTrans->lang = $langCode;
-            $blogTrans->save();
+            $tutorialTrans = new TutorialTrans;
+            $tutorialTrans->post_id = $tutorials->id;
+            $tutorialTrans->name = ucwords(strtolower($request->$name));
+            $tutorialTrans->body = $request->$body;
+            $tutorialTrans->seo_title = $request->$seo_title;
+            $tutorialTrans->meta_keywords = $request->$meta_keywords;
+            $tutorialTrans->meta_description = $request->$meta_description;
+            $tutorialTrans->lang = $langCode;
+            $tutorialTrans->save();
         }
 
-        $response = ['message' => trans('Blogs::blogs.saved_successfully')];
+        $response = ['message' => trans('Tutorials::tutorials.saved_successfully')];
         return response()->json($response, 201);
     }
 // Get SEO URL function here
@@ -128,28 +128,28 @@ class BlogsApiController extends Controller
         $string = preg_replace("/[\s_]/", "-", $string);
         return $string;
     }
-    public function updateBlog(Request $request, $apiKey = '', $id) {
+    public function updateTutorial(Request $request, $apiKey = '', $id) {
         $validator = $this->validatation($request);
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()], 422);
         }
 
-        $blog = Blog::find($id);
+        $tutorial = Tutorial::find($id);
         if ($request->author) {
             $author = $request->author;
         } else {
             $author = Auth::user()->id;
         }
-        $blog->updated_by = $author;
-        $blog->active = false;
+        $tutorial->updated_by = $author;
+        $tutorial->active = false;
         if ($request->active) {
-            $blog->active = true;
+            $tutorial->active = true;
         }
-        $blog->slug = $this->seoUrl($request->name_en);
+        $tutorial->slug = $this->seoUrl($request->name_en);
         // Media
         $options['media']['main_image_id'] = $request->main_image_id;
-        $blog->options = $options;
-        $blog->save();
+        $tutorial->options = $options;
+        $tutorial->save();
         // Translation
         foreach ($request->language as $langCode) {
             $name = 'name_' . $langCode;
@@ -157,26 +157,26 @@ class BlogsApiController extends Controller
             $seo_title = 'seo_title_'.$langCode;
             $meta_keywords = 'meta_keywords_'.$langCode;
             $meta_description = 'meta_description_'.$langCode;
-            $blogTrans = BlogTrans::where('post_id', $blog->id)->where('lang', $langCode)->first();
-            if (empty($blogTrans)) {
-                $blogTrans = new BlogTrans;
-                $blogTrans->post_id = $blog->id;
-                $blogTrans->lang = $langCode;
+            $tutorialTrans = TutorialTrans::where('post_id', $tutorial->id)->where('lang', $langCode)->first();
+            if (empty($tutorialTrans)) {
+                $tutorialTrans = new TutorialTrans;
+                $tutorialTrans->post_id = $tutorial->id;
+                $tutorialTrans->lang = $langCode;
             }
-            $blogTrans->name = ucwords(strtolower($request->$name));
-            $blogTrans->body = $request->$body;
-            $blogTrans->seo_title = $request->$seo_title;
-            $blogTrans->meta_keywords = $request->$meta_keywords;
-            $blogTrans->meta_description = $request->$meta_description;
-            $blogTrans->save();
+            $tutorialTrans->name = ucwords(strtolower($request->$name));
+            $tutorialTrans->body = $request->$body;
+            $tutorialTrans->seo_title = $request->$seo_title;
+            $tutorialTrans->meta_keywords = $request->$meta_keywords;
+            $tutorialTrans->meta_description = $request->$meta_description;
+            $tutorialTrans->save();
         }
 
-        $response = ['message' => trans('Blogs::blogs.updated_successfully')];
+        $response = ['message' => trans('Tutorials::tutorials.updated_successfully')];
         return response()->json($response, 201);
     }
 
     public function postReply(Request $request, $id) {
-        $contact_request = BlogTrans::where('contact_id', $id)->first();
+        $contact_request = TutorialTrans::where('contact_id', $id)->first();
         if ($contact_request) {
             // validate request
             $data = $request->all();
@@ -191,9 +191,9 @@ class BlogsApiController extends Controller
             } else {
                 $arr_request_data = array();
 
-                BlogTrans::where('contact_id', $id)->update(array('is_reply'=>'1'));
+                TutorialTrans::where('contact_id', $id)->update(array('is_reply'=>'1'));
 
-                $obj=new BlogReplyTrans();
+                $obj=new TutorialReplyTrans();
                 $obj->reply_email = $request->email;
 
                 $obj->reply_subject = '';
@@ -216,7 +216,7 @@ class BlogsApiController extends Controller
                     Mail::send('emails.contact-request-reply', $arr_keyword_values, function ($msg) use ($request,  $contact_request,$name,$email) {
                         $msg->from($email, $name);
                         $msg->to($contact_request->contact_email);
-                        $msg->subject(trans('Blogs::blogs.admin_reply'));
+                        $msg->subject(trans('Tutorials::tutorials.admin_reply'));
                     });
                 } catch (\Exception $e) {
                     dd($e);
@@ -232,7 +232,7 @@ class BlogsApiController extends Controller
                     dd($e->getMessage());
                 }
                 \Session::flash('alert-class', 'alert-success');
-                \Session::flash('message', trans('Blogs::blogs.reply_post_msg'));
+                \Session::flash('message', trans('Tutorials::tutorials.reply_post_msg'));
                 return redirect(URL::previous())->with('status', 'Reply posted successfully!');
             }
         } else {

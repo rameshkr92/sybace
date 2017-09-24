@@ -3,11 +3,8 @@ namespace Sybace\Tutorials\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Sybace\Tutorials\Models\Tutorial;
-use Sybace\Tutorials\Models\TutorialTrans;
-use Sybace\Tutorials\Models\Comment;
-use Sybace\Tutorials\Models\CommentTrans;
-use Illuminate\Support\Facades\Input;
+use Sybace\Tutorials\Models\Course;
+use Sybace\Tutorials\Models\CourseTrans;
 use Auth;
 use Lang;
 use Sybace\Settings\Models\Setting;
@@ -16,11 +13,11 @@ use Illuminate\Support\Facades\URL;
 use Config;
 use Illuminate\Support\Facades\Mail;
 
-class TutorialsApiController extends Controller
+class CoursesApiController extends Controller
 {
     /*
    |--------------------------------------------------------------------------
-   | Sybace Pages API Controller
+   | Sybace Courses API Controller
    |--------------------------------------------------------------------------
    |
    */
@@ -42,7 +39,8 @@ class TutorialsApiController extends Controller
                 if($request->language){
                     foreach($request->language as $lang){
                         $rules['name_'.$code.''] = 'required|max:100';
-                        $rules['body_'.$code.''] = 'required';
+                        $rules['short_desc_'.$code.''] = 'required|max:500';
+                        $rules['description_'.$code.''] = 'required';
                     }
                 }
             }
@@ -55,54 +53,56 @@ class TutorialsApiController extends Controller
      */
     public function listItems(Request $request)
     {
-        $contactrequest = Tutorial::FilterStatus()->orderBy('id', 'DESC')->paginate($request->get('paginate'));
+        $contactrequest = Course::FilterStatus()->orderBy('id', 'DESC')->paginate($request->get('paginate'));
         return $contactrequest;
     }
     /**
      * @param
      * @return
      */
-    public function storeTutorial(Request $request)
+    public function storeCourse(Request $request)
     {
         $validator = $this->validatation($request);
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()], 422);
         }
-        $ar_name = TutorialTrans::where('name', ucfirst(strtolower($request->name_ar)))->first();
-        $en_name = TutorialTrans::where('name', ucfirst(strtolower($request->name_en)))->first();
+        $ar_name = CourseTrans::where('name', ucfirst(strtolower($request->name_ar)))->first();
+        $en_name = CourseTrans::where('name', ucfirst(strtolower($request->name_en)))->first();
 
         if (isset($ar_name->name) || isset($en_name->name)) {
             $response = ['alert-class'=>'alert-danger','message' => trans('Tutorials::tutorials.duplicate_section_msg')];
             return response()->json($response, 201);
         }
 
-        $tutorials = new Tutorial();
+        $courses = new Course();
         if ($request->author) {
             $author = $request->author;
         } else {
             $author = Auth::user()->id;
         }
 
-        $tutorials->created_by = $author;
-        $tutorials->updated_by = $author;
-        $tutorials->active = false;
+        $courses->created_by = $author;
+        $courses->updated_by = $author;
+        $courses->active = false;
         if ($request->active) {
-            $tutorials->active = true;
+            $courses->active = true;
         }
-        $tutorials->slug = $this->seoUrl($request->name_en);
-        $tutorials->save();
+        $courses->slug = $this->seoUrl($request->name_en);
+        $courses->save();
 
         // Translation
         foreach ($request->language as $langCode) {
             $name = 'name_' . $langCode;
-            $body = 'body_' . $langCode;
+            $short_desc = 'short_desc_' . $langCode;
+            $body = 'description_' . $langCode;
             $seo_title = 'seo_title_'.$langCode;
             $meta_keywords = 'meta_keywords_'.$langCode;
             $meta_description = 'meta_description_'.$langCode;
-            $tutorialTrans = new TutorialTrans;
-            $tutorialTrans->post_id = $tutorials->id;
+            $tutorialTrans = new CourseTrans;
+            $tutorialTrans->course_id = $courses->id;
             $tutorialTrans->name = ucwords(strtolower($request->$name));
-            $tutorialTrans->body = $request->$body;
+            $tutorialTrans->short_desc = $request->$short_desc;
+            $tutorialTrans->description = $request->$body;
             $tutorialTrans->seo_title = $request->$seo_title;
             $tutorialTrans->meta_keywords = $request->$meta_keywords;
             $tutorialTrans->meta_description = $request->$meta_description;
@@ -125,13 +125,13 @@ class TutorialsApiController extends Controller
         $string = preg_replace("/[\s_]/", "-", $string);
         return $string;
     }
-    public function updateTutorial(Request $request, $apiKey = '', $id) {
+    public function updateCourse(Request $request, $apiKey = '', $id) {
         $validator = $this->validatation($request);
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()], 422);
         }
 
-        $tutorial = Tutorial::find($id);
+        $tutorial = Course::find($id);
         if ($request->author) {
             $author = $request->author;
         } else {
@@ -147,18 +147,18 @@ class TutorialsApiController extends Controller
         // Translation
         foreach ($request->language as $langCode) {
             $name = 'name_' . $langCode;
-            $body = 'body_' . $langCode;
+            $body = 'description_' . $langCode;
             $seo_title = 'seo_title_'.$langCode;
             $meta_keywords = 'meta_keywords_'.$langCode;
             $meta_description = 'meta_description_'.$langCode;
-            $tutorialTrans = TutorialTrans::where('post_id', $tutorial->id)->where('lang', $langCode)->first();
+            $tutorialTrans = CourseTrans::where('course_id', $tutorial->id)->where('lang', $langCode)->first();
             if (empty($tutorialTrans)) {
-                $tutorialTrans = new TutorialTrans;
-                $tutorialTrans->post_id = $tutorial->id;
+                $tutorialTrans = new CourseTrans;
+                $tutorialTrans->course_id = $tutorial->id;
                 $tutorialTrans->lang = $langCode;
             }
             $tutorialTrans->name = ucwords(strtolower($request->$name));
-            $tutorialTrans->body = $request->$body;
+            $tutorialTrans->description = $request->$body;
             $tutorialTrans->seo_title = $request->$seo_title;
             $tutorialTrans->meta_keywords = $request->$meta_keywords;
             $tutorialTrans->meta_description = $request->$meta_description;
@@ -170,7 +170,7 @@ class TutorialsApiController extends Controller
     }
 
     public function postReply(Request $request, $id) {
-        $contact_request = TutorialTrans::where('contact_id', $id)->first();
+        $contact_request = CourseTrans::where('contact_id', $id)->first();
         if ($contact_request) {
             // validate request
             $data = $request->all();
@@ -185,9 +185,9 @@ class TutorialsApiController extends Controller
             } else {
                 $arr_request_data = array();
 
-                TutorialTrans::where('contact_id', $id)->update(array('is_reply'=>'1'));
+                CourseTrans::where('contact_id', $id)->update(array('is_reply'=>'1'));
 
-                $obj=new TutorialReplyTrans();
+                $obj=new CourseReplyTrans();
                 $obj->reply_email = $request->email;
 
                 $obj->reply_subject = '';
@@ -210,7 +210,7 @@ class TutorialsApiController extends Controller
                     Mail::send('emails.contact-request-reply', $arr_keyword_values, function ($msg) use ($request,  $contact_request,$name,$email) {
                         $msg->from($email, $name);
                         $msg->to($contact_request->contact_email);
-                        $msg->subject(trans('Tutorials::tutorials.admin_reply'));
+                        $msg->subject(trans('Courses::tutorials.admin_reply'));
                     });
                 } catch (\Exception $e) {
                     dd($e);

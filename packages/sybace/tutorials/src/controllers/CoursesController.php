@@ -1,8 +1,11 @@
 <?php
 
 namespace Sybace\Tutorials\Controllers;
+
 use Illuminate\Http\Request;
-use Sybace\Tutorials\Controllers\TutorialsApiController as API;
+use Sybace\Tutorials\Controllers\CoursesApiController as API;
+use Sybace\Tutorials\Models\Course;
+use Sybace\Tutorials\Models\CourseTrans;
 use Sybace\Tutorials\Models\Tutorial;
 use Sybace\Tutorials\Models\TutorialTrans;
 use Sybace\Tutorials\Models\Comment;
@@ -12,7 +15,7 @@ use Lang;
 
 //use Sybace\Tutorials\Models\Section;
 
-class TutorialsController extends TutorialsApiController {
+class CoursesController extends CoursesApiController {
     /*
       |--------------------------------------------------------------------------
       | Sybace Tutorials Controller
@@ -37,18 +40,10 @@ class TutorialsController extends TutorialsApiController {
         $items = $this->api->listItems($request);
 //        dd($items);
 //        $sections = Section::get();
-        return view('Tutorials::tutorials.index', compact('items', 'sections'));
-    }
-
-    public function sectionIndex(Request $request) {
-        $request->request->add(['paginate' => 20]);
-        $items = $this->api->listSectionItems($request);
-        return view('Tutorials::tutorials.section-index', compact('items', 'sections'));
+        return view('Tutorials::tutorials.courses', compact('items', 'sections'));
     }
 
     /**
-     *
-     *
      * @param
      * @return
      */
@@ -67,14 +62,14 @@ class TutorialsController extends TutorialsApiController {
      *create tutorials
      */
     public function create() {
-        return view('Tutorials::tutorials.create-edit', compact('sections'));
+        return view('Tutorials::tutorials.courses-create-edit', compact('sections'));
     }
 
     /**
      *store contact
      */
     public function store(Request $request) {
-        $store = $this->api->storeTutorial($request);
+        $store = $this->api->storeCourse($request);
         $store = $store->getData();
 
         if (isset($store->errors)) {
@@ -87,15 +82,15 @@ class TutorialsController extends TutorialsApiController {
         if ($request->back) {
             return back();
         }
-        return redirect(action('\Sybace\Tutorials\Controllers\TutorialsController@index'));
+        return redirect(action('\Sybace\Tutorials\Controllers\CoursesController@index'));
     }
     /**
      * @param
      * @return
      */
     public function edit($id) {
-        $item = Tutorial::findOrFail($id);
-        $trans = TutorialTrans::where('post_id', $id)->get()->keyBy('lang')->toArray();
+        $item = Course::findOrFail($id);
+        $trans = CourseTrans::where('course_id', $id)->get()->keyBy('lang')->toArray();
 //        $sections = Section::get();
         return view('Tutorials::tutorials.create-edit', compact('item', 'trans'));
     }
@@ -120,7 +115,7 @@ class TutorialsController extends TutorialsApiController {
         if ($request->back) {
             return back();
         }
-        return redirect(action('\Sybace\Tutorials\Controllers\TutorialsController@index'));
+        return redirect(action('\Sybace\Tutorials\Controllers\CoursesController@index'));
     }
 
     /**
@@ -130,14 +125,14 @@ class TutorialsController extends TutorialsApiController {
      * @return
      */
     public function confirmDelete($id) {
-        $item = Tutorial::findOrFail($id);
+        $item = Course::findOrFail($id);
         return view('Tutorials::ads.confirm-delete', compact('item'));
     }
 
     public function bulkOperations(Request $request) {
         if ($request->ids) {
 //            $items = Tutorials::whereIn('id', $request->ids)->get();
-            $items = TutorialTrans::whereIn('contact_id', $request->ids)->get();
+            $items = CourseTrans::whereIn('contact_id', $request->ids)->get();
 //            dd($items);
             if ($items->count()) {
                 foreach ($items as $item) {
@@ -164,7 +159,7 @@ class TutorialsController extends TutorialsApiController {
     public function changeStatus($id = "") {
         if ($id != "") {
 //            $repo = Tutorials::where('id', $id)->first();
-            $repo = TutorialTrans::where('contact_id', $id)->first();
+            $repo = CourseTrans::where('contact_id', $id)->first();
             if($repo->is_read == "1"){
                 $repo->is_read = 0;
             }else{

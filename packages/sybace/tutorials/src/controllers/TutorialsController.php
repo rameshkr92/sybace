@@ -1,25 +1,25 @@
 <?php
 
-namespace Sybace\Blogs\Controllers;
+namespace Sybace\Tutorials\Controllers;
 
 use Illuminate\Http\Request;
-use Sybace\Blogs\Controllers\BlogsApiController as API;
-use Sybace\Blogs\Models\Blog;
-use Sybace\Blogs\Models\BlogTrans;
-use Sybace\Blogs\Models\Comment;
-use Sybace\Blogs\Models\CommentTrans;
+use Sybace\Tutorials\Controllers\TutorialsApiController as API;
+use Sybace\Tutorials\Models\Tutorial;
+use Sybace\Tutorials\Models\TutorialTrans;
+use Sybace\Tutorials\Models\Comment;
+use Sybace\Tutorials\Models\CommentTrans;
 use Sybace\Settings\Models\Setting;
 use Lang;
 
-//use Sybace\Blogs\Models\Section;
+//use Sybace\Tutorials\Models\Section;
 
-class CommentsController extends CommentsApiController {
+class TutorialsController extends TutorialsApiController {
     /*
       |--------------------------------------------------------------------------
-      | Sybace Comments Controller
+      | Sybace Tutorials Controller
       |--------------------------------------------------------------------------
       |
-      | This controller handles Comments for the application.
+      | This controller handles Tutorials for the application.
       |
      */
 
@@ -38,7 +38,7 @@ class CommentsController extends CommentsApiController {
         $items = $this->api->listItems($request);
 //        dd($items);
 //        $sections = Section::get();
-        return view('Blogs::blogs.comments', compact('items', 'sections'));
+        return view('Tutorials::tutorials.create-edit', compact('items', 'sections'));
     }
 
     /**
@@ -46,28 +46,28 @@ class CommentsController extends CommentsApiController {
      * @return
      */
     public function show(Request $request, $id) {
-        $repo = Blog::where('id', $id)->first();
-        $contact_request = BlogTrans::where('contact_id', $id)->first();
+        $repo = Tutorial::where('id', $id)->first();
+        $contact_request = TutorialTrans::where('contact_id', $id)->first();
 //        $contact_request->is_read = "1";
 //        $contact_request->save();
         $name = Setting::find(1)->value;
         $contact_email = Setting::find(3)->value;
 
-        return view('Blogs::blogs.show', ['request' => $contact_request, 'contact_email' => $contact_email]);
+        return view('Tutorials::tutorials.show', ['request' => $contact_request, 'contact_email' => $contact_email]);
     }
 
     /**
-     *create blogs
+     *create tutorials
      */
     public function create() {
-        return view('Blogs::blogs.create-edit', compact('sections'));
+        return view('Tutorials::tutorials.create-edit', compact('sections'));
     }
 
     /**
      *store contact
      */
     public function store(Request $request) {
-        $store = $this->api->storeBlog($request);
+        $store = $this->api->storeTutorial($request);
         $store = $store->getData();
 
         if (isset($store->errors)) {
@@ -80,17 +80,17 @@ class CommentsController extends CommentsApiController {
         if ($request->back) {
             return back();
         }
-        return redirect(action('\Sybace\Blogs\Controllers\CommentsController@index'));
+        return redirect(action('\Sybace\Tutorials\Controllers\TutorialsController@index'));
     }
     /**
      * @param
      * @return
      */
     public function edit($id) {
-        $item = Blog::findOrFail($id);
-        $trans = BlogTrans::where('post_id', $id)->get()->keyBy('lang')->toArray();
+        $item = Tutorial::findOrFail($id);
+        $trans = TutorialTrans::where('post_id', $id)->get()->keyBy('lang')->toArray();
 //        $sections = Section::get();
-        return view('Blogs::blogs.create-edit', compact('item', 'trans'));
+        return view('Tutorials::tutorials.create-edit', compact('item', 'trans'));
     }
 
     /**
@@ -100,7 +100,7 @@ class CommentsController extends CommentsApiController {
      * @return
      */
     public function update(Request $request, $id) {
-        $update = $this->api->updateBlog($request, '', $id);
+        $update = $this->api->updateTutorial($request, '', $id);
         $update = $update->getData();
 
         if (isset($update->errors)) {
@@ -113,7 +113,7 @@ class CommentsController extends CommentsApiController {
         if ($request->back) {
             return back();
         }
-        return redirect(action('\Sybace\Blogs\Controllers\CommentsController@index'));
+        return redirect(action('\Sybace\Tutorials\Controllers\TutorialsController@index'));
     }
 
     /**
@@ -123,14 +123,14 @@ class CommentsController extends CommentsApiController {
      * @return
      */
     public function confirmDelete($id) {
-        $item = Blog::findOrFail($id);
-        return view('Blogs::ads.confirm-delete', compact('item'));
+        $item = Tutorial::findOrFail($id);
+        return view('Tutorials::ads.confirm-delete', compact('item'));
     }
 
     public function bulkOperations(Request $request) {
         if ($request->ids) {
-//            $items = Blogs::whereIn('id', $request->ids)->get();
-            $items = BlogTrans::whereIn('contact_id', $request->ids)->get();
+//            $items = Tutorials::whereIn('id', $request->ids)->get();
+            $items = TutorialTrans::whereIn('contact_id', $request->ids)->get();
 //            dd($items);
             if ($items->count()) {
                 foreach ($items as $item) {
@@ -156,8 +156,8 @@ class CommentsController extends CommentsApiController {
     //contact us
     public function changeStatus($id = "") {
         if ($id != "") {
-//            $repo = Blogs::where('id', $id)->first();
-            $repo = BlogTrans::where('contact_id', $id)->first();
+//            $repo = Tutorials::where('id', $id)->first();
+            $repo = TutorialTrans::where('contact_id', $id)->first();
             if($repo->is_read == "1"){
                 $repo->is_read = 0;
             }else{
@@ -165,7 +165,7 @@ class CommentsController extends CommentsApiController {
             }
             $repo->save();
             \Session::flash('alert-class', 'alert-success');
-            \Session::flash('message', trans('Blogs::blogs.status_changed_successfully'));
+            \Session::flash('message', trans('Tutorials::tutorials.status_changed_successfully'));
             return back();
         } else {
             return back();

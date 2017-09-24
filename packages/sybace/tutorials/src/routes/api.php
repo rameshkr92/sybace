@@ -14,13 +14,13 @@ use Illuminate\Http\Request;
 */
 $locale = \Request::segment(1);
 Route::group(['middleware' => ['api'], 'prefix' => $locale.'/api/{key}'], function() {
-    # Blogs
-    Route::GET('blogs', 'Sybace\Blogs\Controllers\BlogsApiController@list');
-    Route::POST('blogs', 'Sybace\Blogs\Controllers\BlogsApiController@storeBlog');
-    Route::POST('blogs/{id}/update', 'Sybace\Blogs\Controllers\BlogsApiController@updateBlog');
+    # Tutorials
+    Route::GET('tutorials', 'Sybace\Tutorials\Controllers\TutorialsApiController@list');
+    Route::POST('tutorials', 'Sybace\Tutorials\Controllers\TutorialsApiController@storeBlog');
+    Route::POST('tutorials/{id}/update', 'Sybace\Tutorials\Controllers\TutorialsApiController@updateBlog');
 
     # Comments
-    Route::GET('blogs/comments', 'Sybace\Blogs\Controllers\CommentsApiController@list');
-    Route::POST('blogs/comments', 'Sybace\Blogs\Controllers\CommentsApiController@storeComment');
-    Route::POST('blogs/comments/{id}/update', 'Sybace\Blogs\Controllers\CommentsApiController@updateComment');
+    Route::GET('tutorials/comments', 'Sybace\Tutorials\Controllers\CommentsApiController@list');
+    Route::POST('tutorials/comments', 'Sybace\Tutorials\Controllers\CommentsApiController@storeComment');
+    Route::POST('tutorials/comments/{id}/update', 'Sybace\Tutorials\Controllers\CommentsApiController@updateComment');
 });

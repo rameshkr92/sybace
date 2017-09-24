@@ -1,13 +1,13 @@
 <?php
 
-namespace Sybace\Blogs\Models;
+namespace Sybace\Tutorials\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Lang;
 
-class BlogTrans extends Model
+class TutorialCategoryTrans extends Model
 {
-    protected $table = 'blogs_trans';
+    protected $table = 'tutorials_trans';
     /**
      * The attributes excluded from the model's JSON form.
      *
@@ -17,12 +17,12 @@ class BlogTrans extends Model
     
     public function comments()
 	{
-		return $this->hasMany('\Sybace\Blogs\Models\CommentTrans','post_id','comment_id')->where('lang', Lang::getlocale())->select("*");
+		return $this->hasMany('\Sybace\Tutorials\Models\CommentTrans','post_id','comment_id')->where('lang', Lang::getlocale())->select("*");
 	}
     
     public function post()
     {   
-        return $this->belongsTo('Sybace\Blogs\Models\Blogs', 'post_id');//->select(['id', 'name']);
+        return $this->belongsTo('Sybace\Tutorials\Models\Tutorials', 'post_id');//->select(['id', 'name']);
     
     }
 

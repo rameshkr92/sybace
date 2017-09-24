@@ -1,11 +1,11 @@
 <?php
 
-namespace Sybace\Blogs\Models;
+namespace Sybace\Tutorials\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Lang;
 
-class CommentTrans extends Model
+class TutorialTrans extends Model
 {
     protected $table = 'comments_trans';
     /**
@@ -13,16 +13,16 @@ class CommentTrans extends Model
      *
      * @var array
      */
-    
-    
+
+
     public function contactus()
 	{
-		return $this->hasMany('\Sybace\Blogs\Models\BlogsTrans','contact_section_id','section_id')->where('lang', Lang::getlocale())->select("*");
+		return $this->hasMany('\Sybace\Tutorials\Models\TutorialsTrans','contact_section_id','section_id')->where('lang', Lang::getlocale())->select("*");
 	}
-    
+
     public function section()
-    {   
-        return $this->belongsTo('Sybace\Blogs\Models\CommentTrans', 'section_id');
+    {
+        return $this->belongsTo('Sybace\Tutorials\Models\CommentTrans', 'section_id');
     
     }
 

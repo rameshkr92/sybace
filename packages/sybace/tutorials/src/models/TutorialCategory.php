@@ -1,13 +1,13 @@
 <?php
 
-namespace Sybace\Blogs\Models;
+namespace Sybace\Tutorials\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Lang;
 
-class Blog extends Model
+class TutorialCategory extends Model
 {
-    protected $table = 'blogs';
+    protected $table = 'tutorials';
 
 //    protected $appends = ['type', 'media'];
     protected $fillable = ['name','body'];
@@ -37,8 +37,8 @@ class Blog extends Model
      */
     public function trans()
     {
-//        return $this->hasOne('\Sybace\Blogs\Models\BlogsTrans', 'blog_id')->where('lang', Lang::getlocale())->select("*");
-        return $this->hasOne('\Sybace\Blogs\Models\BlogTrans', 'post_id')->select("*");
+//        return $this->hasOne('\Sybace\Tutorials\Models\TutorialsTrans', 'tutorial_id')->where('lang', Lang::getlocale())->select("*");
+        return $this->hasOne('\Sybace\Tutorials\Models\TutorialTrans', 'post_id')->select("*");
     }
 
     /**
@@ -47,9 +47,9 @@ class Blog extends Model
     public function getTypeAttribute()
 	{	
 		if ($this->category == 1) {
-			$category = trans('Blogs::blogs.blogs');
+			$category = trans('Tutorials::tutorials.tutorials');
 		}elseif ($this->category == 2) {
-			$category = trans('Blogs::blogs.blog');
+			$category = trans('Tutorials::tutorials.tutorial');
 		}
 	    return $category;
 	}
@@ -134,7 +134,7 @@ class Blog extends Model
 
 
     /**
-     * Scope a query to only include filterd blogs name.
+     * Scope a query to only include filterd tutorials name.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
      * @return \Illuminate\Database\Eloquent\Builder
@@ -151,7 +151,7 @@ class Blog extends Model
     }
 
     /**
-     * Scope a query to only include filterd blogs section.
+     * Scope a query to only include filterd tutorials section.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
      * @return \Illuminate\Database\Eloquent\Builder
@@ -166,7 +166,7 @@ class Blog extends Model
     }
 
     /**
-     * Scope a query to only include filterd blogs status.
+     * Scope a query to only include filterd tutorials status.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
      * @return \Illuminate\Database\Eloquent\Builder

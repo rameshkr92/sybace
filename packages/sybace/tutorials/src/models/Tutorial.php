@@ -1,11 +1,11 @@
 <?php
 
-namespace Sybace\Blogs\Models;
+namespace Sybace\Tutorials\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Lang;
 
-class Comment extends Model
+class Tutorial extends Model
 {
     protected $table = 'comments';
 
@@ -34,7 +34,7 @@ class Comment extends Model
      */
     public function trans()
     {
-        return $this->hasOne('\Sybace\Blogs\Models\CommentTrans', 'comment_id')->where('lang', Lang::getlocale())->select("*");
+        return $this->hasOne('\Sybace\Tutorials\Models\TutorialTrans', 'comment_id')->where('lang', Lang::getlocale())->select("*");
     }
     /**
      * Author relation.

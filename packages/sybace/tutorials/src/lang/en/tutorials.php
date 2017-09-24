@@ -11,6 +11,8 @@ return [
     | that are given by media
     |
     */
+    'courses' => 'Courses',
+    'course' => 'Course',
     'manage' => 'Manage',
     'tutorials' => 'Tutorials',
     'tutorial' => 'Tutorial',
@@ -24,6 +26,7 @@ return [
     'categories' => 'Categories',
     'category' => 'Category',
     'name' => 'Product name',
+    'short_description' => 'Short Description',
     'description' => 'Description',
     'select' => 'Select',
     'services' => 'Services',
